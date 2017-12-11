@@ -2,7 +2,7 @@
   "name": "default-feed",
   "url": "https://spotphish.github.io/feeds/main/main.json",
   "schema": "1.0",
-  "version": "20171110123394",
+  "version": "20171211104288",
   "sites": [
     {
       "name": "Facebook",
