@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+          /* border-collapse: collapse; */
+          width: 100%;
+        }
+        
+        th, td {
+          text-align: center;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even){background-color: #f2f2f2}
+        
+        th {
+          background-color: #4CAF50;
+          color: white;
+        }
+    </style>
+        
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="https://raw.githubusercontent.com/sudhirkr/spotphish-model/master/track-result.js"></script>
+    <script src="https://raw.githubusercontent.com/sudhirkr/spotphish-model/master/TensorflowTF.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+    <script src="https://raw.githubusercontent.com/sudhirkr/spotphish-model/master/test.js"> </script>
+    <title>test spotphish</title>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+          <th>Label</th>
+          <th>Prediction</th>
+          <th>Confidence</th>
+          <th>Time Taken</th>
+          <th>Image</th>
+        </tr>
+      </table>
+</body>
+</html>
