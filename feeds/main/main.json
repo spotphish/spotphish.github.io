@@ -982,8 +982,8 @@
         ],
         "templates": [
           {
-            "name": "Yes-Bank-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Yes-Bank-1.png"
+            "name": "YES-Bank-1",
+            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/YES-Bank-1.png"
           }
         ],
         "safe": [
@@ -1019,10 +1019,6 @@
           {
             "name": "IDBI-1",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/IDBI-1.png"
-          },
-          {
-            "name": "IDBI-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/IDBI-2.png"
           }
         ],
         "safe": [
