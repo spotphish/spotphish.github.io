@@ -389,9 +389,6 @@
           },
           {
             "url": "https://www.icicibank.com/Personal-Banking/insta-banking/internet-banking/index.page"
-          },
-          {
-            "url": "https://infinity.icicibank.com/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=ICI&ITM=nli_personalb_personal_login_btn&_ga=2.231311517.306961153.1597308525-1810303779.1597036995"
           }
         ],
         "templates": [
