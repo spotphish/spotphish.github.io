@@ -251,7 +251,8 @@
         "templates": [
           {
             "name": "Axis Bank",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Axis-Bank-2.png"
+            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Axis-Bank-2.png",
+            "checksum": "18ed2e8b1135fc0c6b8ddc85371f3a4600109e81546b54b33f353e879062e1fe"
           }
         ],
         "safe": [
