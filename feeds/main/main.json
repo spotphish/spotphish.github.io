@@ -243,9 +243,6 @@
           },
           {
             "url": "https://www.axisbank.com/bank-smart/internet-banking/getting-started"
-          },
-          {
-            "url": "https://retail.axisbank.co.in/wps/portal/rBanking/axisebanking/AxisRetailLogin/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNAzxMjIwNjLwsQp0MDBw9PUOd3HwdDQwMjIEKIoEKDHAARwNC-sP1o_ArMYIqwGNFQW6EQaajoiIAVNL82A!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/?_ga=2.176901798.2087957965.1597285660-2077410702.1597035646"
           }
         ],
         "templates": [
@@ -276,9 +273,6 @@
           },
           {
             "url": "https://www.bankofbaroda.in/login.htm"
-          },
-          {
-            "url": "https://feba.bobibanking.com/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=012&language=English"
           }
         ],
         "templates": [
@@ -305,9 +299,6 @@
         "protected": [
           {
             "url": "https://www.hdfcbank.com/"
-          },
-          {
-            "url": "https://netbanking.hdfcbank.com/netbanking/?_ga=2.209993557.1157941487.1597288009-2143975229.1597036634"
           },
           {
             "url": "https://v1.hdfcbank.com/assets/popuppages/netbanking.htm"
@@ -459,9 +450,6 @@
           },
           {
             "url": "https://www.fednetbank.com/"
-          },
-          {
-            "url": "https://www.fednetbank.com/corp/AuthenticationController?__START_TRAN_FLAG__=Y&FORMSGROUP_ID__=AuthenticationFG&__EVENT_ID__=LOAD&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=049&LANGUAGE_ID=001"
           }
         ],
         "templates": [
@@ -491,9 +479,6 @@
           },
           {
             "url": "https://www.indusind.com/in/en/personal/login.html"
-          },
-          {
-            "url": "https://indusnet.indusind.com/corp/BANKAWAY?Action.RetUser.Init.001=Y&AppSignonBankId=234&AppType=corporate&CorporateSignonLangId=001"
           }
         ],
         "templates": [
@@ -523,9 +508,6 @@
           },
           {
             "url": "https://pnbibanking.in/home.html"
-          },
-          {
-            "url": "https://netbanking.netpnb.com/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&__FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=024"
           },
           {
             "url": "https://pnbnet.org.in/OOSA/"
@@ -558,9 +540,6 @@
         "protected": [
           {
             "url": "https://www.rblbank.com/"
-          },
-          {
-            "url": "https://online.rblbank.com/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&__FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=176"
           },
           {
             "url": "https://pgi.billdesk.com/pgidsk/pgmerc/instpy/RBLIndex.jsp"
@@ -834,9 +813,6 @@
             "url": "https://www.unionbankonline.co.in/home.html"
           },
           {
-            "url": "https://www.unionbankonline.co.in/corp/AuthenticationController?__START_TRAN_FLAG__=Y&FORMSGROUP_ID__=AuthenticationFG&__EVENT_ID__=LOAD&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=026&LANGUAGE_ID=001"
-          },
-          {
             "url": "https://www.unionbankonline.co.in/home.html"
           }
         ],
@@ -928,12 +904,6 @@
         "protected": [
           {
             "url": "https://www.idbibank.in/idbi-bank-internet-banking.asp"
-          },
-          {
-            "url": "https://inet.idbibank.co.in/ret/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&__FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=IBKL"
-          },
-          {
-            "url": "https://corp.idbibank.co.in/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&__FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=IBKL"
           }
         ],
         "templates": [
