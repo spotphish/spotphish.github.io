@@ -250,11 +250,7 @@
         ],
         "templates": [
           {
-            "name": "Axis-Bank-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Axis-Bank-1.png"
-          },
-          {
-            "name": "Axis-Bank-2",
+            "name": "Axis Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Axis-Bank-2.png"
           }
         ],
@@ -286,11 +282,7 @@
         ],
         "templates": [
           {
-            "name": "Bank-of-Baroda-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Bank-of-Baroda-1.png"
-          },
-          {
-            "name": "Bank-of-Baroda-2",
+            "name": "Bank of Baroda",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Bank-of-Baroda-2.png"
           }
         ],
@@ -322,16 +314,8 @@
         ],
         "templates": [
           {
-            "name": "HDFC-Bank-1",
+            "name": "HDFC Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/HDFC-Bank-1.png"
-          },
-          {
-            "name": "HDFC-Bank-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/HDFC-Bank-2.png"
-          },
-          {
-            "name": "HDFC-Bank-3",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/HDFC-Bank-3.png"
           }
         ],
         "safe": [
@@ -368,24 +352,8 @@
         ],
         "templates": [
           {
-            "name": "SBI-1",
+            "name": "SBI",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/SBI-1.png"
-          },
-          {
-            "name": "SBI-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/SBI-2.png"
-          },
-          {
-            "name": "SBI-3",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/SBI-3.png"
-          },
-          {
-            "name": "SBI-4",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/SBI-4.png"
-          },
-          {
-            "name": "SBI-5",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/SBI-5.png"
           }
         ],
         "safe": [
@@ -413,12 +381,8 @@
         ],
         "templates": [
           {
-            "name": "Kotak-1",
+            "name": "Kotak Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Kotak-1.png"
-          },
-          {
-            "name": "Kotak-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Kotak-2.png"
           }
         ],
         "safe": [
@@ -472,7 +436,7 @@
         ],
         "templates": [
           {
-            "name": "Bandhan-Bank-1.png",
+            "name": "Bandhan Bank.png",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Bandhan-Bank-1.png"
           }
         ],
@@ -501,12 +465,8 @@
         ],
         "templates": [
           {
-            "name": "Federal-Bank-1",
+            "name": "Federal Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Federal-Bank-1.png"
-          },
-          {
-            "name": "Federal-Bank-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Federal-Bank-2.png"
           }
         ],
         "safe": [
@@ -537,16 +497,8 @@
         ],
         "templates": [
           {
-            "name": "IndusInd-Bank-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/IndusInd-Bank-1.png"
-          },
-          {
-            "name": "IndusInd-Bank-2",
+            "name": "IndusInd Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/IndusInd-Bank-2.png"
-          },
-          {
-            "name": "IndusNet-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/IndusNet-1.png"
           }
         ],
         "safe": [
@@ -580,16 +532,8 @@
         ],
         "templates": [
           {
-            "name": "PNB-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/PNB-1.png"
-          },
-          {
-            "name": "PNB-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/PNB-2.png"
-          },
-          {
-            "name": "PNB-3",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/PNB-3.png"
+            "name": "Punjab National Bank",
+            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/PNB-4.png"
           }
         ],
         "safe": [
@@ -629,7 +573,7 @@
         ],
         "templates": [
           {
-            "name": "RBL-1",
+            "name": "RBL Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/RBL-1.png"
           }
         ],
@@ -667,7 +611,7 @@
         ],
         "templates": [
           {
-            "name": "BOI-1",
+            "name": "Bank of India",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/BOI-1.png"
           }
         ],
@@ -699,7 +643,7 @@
         ],
         "templates": [
           {
-            "name": "BOM-1",
+            "name": "Bank of Maharashtra",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/BOM-1.png"
           }
         ],
@@ -731,15 +675,7 @@
         ],
         "templates": [
           {
-            "name": "Canara-Bank-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Canara-Bank-1.png"
-          },
-          {
-            "name": "Canara-Bank-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Canara-Bank-2.png"
-          },
-          {
-            "name": "Canara-Bank-3",
+            "name": "Canara Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Canara-Bank-3.png"
           }
         ],
@@ -780,7 +716,7 @@
         ],
         "templates": [
           {
-            "name": "CBOI-1",
+            "name": "Central Bank of India",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/CBOI-1.png"
           }
         ],
@@ -812,7 +748,7 @@
         ],
         "templates": [
           {
-            "name": "Indian-Bank-1",
+            "name": "Indian Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Indian-Bank-1.png"
           }
         ],
@@ -847,7 +783,7 @@
         ],
         "templates": [
           {
-            "name": "IOB-1",
+            "name": "Indian Overseas Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/IOB-1.png"
           }
         ],
@@ -873,11 +809,7 @@
         ],
         "templates": [
           {
-            "name": "PSB-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/PSB-2.png"
-          },
-          {
-            "name": "PSB-2",
+            "name": "Punjab and Sind Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/PSB-2.png"
           }
         ],
@@ -909,11 +841,7 @@
         ],
         "templates": [
           {
-            "name": "UBOI-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/UBOI-1.png"
-          },
-          {
-            "name": "UBOI-2",
+            "name": "Union Bank of India",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/UBOI-2.png"
           }
         ],
@@ -939,16 +867,8 @@
         ],
         "templates": [
           {
-            "name": "UCO-1",
+            "name": "UCO Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/UCO-1.png"
-          },
-          {
-            "name": "UCO-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/UCO-2.png"
-          },
-          {
-            "name": "UCO-3",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/UCO-3.png"
           }
         ],
         "safe": [
@@ -982,7 +902,7 @@
         ],
         "templates": [
           {
-            "name": "YES-Bank-1",
+            "name": "YES Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/YES-Bank-1.png"
           }
         ],
@@ -1017,7 +937,7 @@
         ],
         "templates": [
           {
-            "name": "IDBI-1",
+            "name": "IDBI Bank",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/IDBI-1.png"
           }
         ],
@@ -1049,12 +969,8 @@
         ],
         "templates": [
           {
-            "name": "LinkedIn-1",
+            "name": "LinkedIn",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/LinkedIn-1.png"
-          },
-          {
-            "name": "LinkedIn-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/LinkedIn-2.png"
           }
         ],
         "safe": [
@@ -1079,11 +995,7 @@
         ],
         "templates": [
           {
-            "name": "Twitter-1",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Twitter-1.png"
-          },
-          {
-            "name": "Twitter-2",
+            "name": "Twitter",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Twitter-2.png"
           }
         ],
@@ -1109,12 +1021,8 @@
         ],
         "templates": [
           {
-            "name": "Income-Tax-1",
+            "name": "Income Tax",
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Income-Tax-1.png"
-          },
-          {
-            "name": "Income-Tax-2",
-            "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/Income-Tax-2.png"
           }
         ],
         "safe": [
