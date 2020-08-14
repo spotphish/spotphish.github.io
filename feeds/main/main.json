@@ -337,9 +337,6 @@
           },
           {
             "url": "https://www.sbiyono.sbi/index.html"
-          },
-          {
-            "url": "https://www.sbiyono.sbi/wps/portal/login#!/prelogin"
           }
         ],
         "templates": [
@@ -546,9 +543,6 @@
           },
           {
             "url": "https://payments.rblbank.com/"
-          },
-          {
-            "url": "https://abacus.rblbank.com/DigiAqui/#/welcome?LeadSource=Website-header-openSavAcc-button&itm_campaign=Digital-Sav-Acc&itm_medium=Website&itm_source=header-openSavAcc-button"
           }
         ],
         "templates": [
