@@ -266,10 +266,10 @@
         "src": "https://sudhirkr.github.io/spotphish-model/feeds/main/main.json",
         "protected": [
           {
-            "url": "https://www.bankofbaroda.in/"
+            "url": "https://www.bankofbaroda.in"
           },
           {
-            "url": "https://www.bobibanking.com/"
+            "url": "https://www.bobibanking.com"
           },
           {
             "url": "https://www.bankofbaroda.in/login.htm"
@@ -414,10 +414,10 @@
         "src": "https://sudhirkr.github.io/spotphish-model/feeds/main/main.json",
         "protected": [
           {
-            "url": "https://www.bandhanbank.com/"
+            "url": "https://www.bandhanbank.com"
           },
           {
-            "url": "https://bandhanbankonline.com/netbanking/"
+            "url": "https://bandhanbankonline.com/netbanking"
           }
         ],
         "templates": [
