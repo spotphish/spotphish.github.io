@@ -198,7 +198,7 @@ MIT
 
 Email us at <dev@spotphish.com> or follow [@spotphish](https://twitter.com/spotphish).
 
-[Axis Bank Green Flag]: https://raw.githubusercontent.com/sudhirkr/spotphish-model/master/greenlag.gif
-[Installation]: https://raw.githubusercontent.com/sudhirkr/spotphish-model/master/install.gif
+[Axis Bank Green Flag]: greenlag.gif
+[Installation]: install.gif
 [foab]: https://arxiv.org/abs/1705.08568
 [icon]: https://en.wikipedia.org/wiki/Bend_(heraldry)#/media/File:Bend_Sinister_demo.svg
