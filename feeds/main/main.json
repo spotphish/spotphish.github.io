@@ -76,6 +76,10 @@
             "image": "https://sudhirkr.github.io/spotphish-model/feeds/main/images/pp-old.png",
             "checksum": "88820f238888b603bce20e915dec2049c86b97dde6863c09bd00be3a0e84dbd8"
           }
+        ],"safe": [
+          {
+            "domain": "paypal.com"
+          }
         ]
       },
       {
