@@ -60,6 +60,9 @@
           },
           {
             "url": "https://www.paypal.com/signin/authorize"
+          },
+          {
+            "url": "https://www.paypal.com/us/signin"
           }
         ],
         "templates": [
@@ -203,6 +206,9 @@
           },
           {
             "url": "https://www.dropbox.com/business"
+          },
+          {
+            "url": "https://www.dropbox.com/login"
           }
         ],
         "templates": [
