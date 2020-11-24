@@ -52,54 +52,54 @@ async function showSummary(true_pred,false_pred,no_pred, total_pred) {
     Summary.innerHTML = "True:" +true_pred + ", False:" +false_pred +", No Prediction:" + no_pred+", Total:"+total_pred;
     document.body.appendChild(Summary);
 }
-// async function templateMatchingModel(){
-//     console.log("inside template matching");
-//     let data = await loadTestDataFrom(test_dataset_url);
+async function templateMatchingModel(){
+    console.log("inside template matching");
+    let data = await loadTestDataFrom(test_dataset_url);
 
 
-//     for (let index = 0; index < 1; index++) {
-//         let screenshot=data.image[index].url_src;
-//         findOrbFeatures(screenshot).then(x=>console.log(x));
-//     }
-//     return;
+    for (let index = 0; index < 1; index++) {
+        let screenshot=data.image[index].url_src;
+        findOrbFeatures(screenshot).then(x=>console.log(x));
+    }
+    return;
 
-//     let screenshot, features, match;
+    let screenshot, features, match;
 
 
-//     findOrbFeatures(screenshot)
-//        .then(x => features = x)
-//        .then(features => matchTemplates(features))
-//        .then(x => match = x)
-//        .then(match => makeCorrespondenceImage(match, screenshot, features))
-//        .then(corr_img => ({match, corr_img}));
+    findOrbFeatures(screenshot)
+       .then(x => features = x)
+       .then(features => matchTemplates(features))
+       .then(x => match = x)
+       .then(match => makeCorrespondenceImage(match, screenshot, features))
+       .then(corr_img => ({match, corr_img}));
 
-//    function matchTemplates(scrFeatures) {
-//        const scrCorners = scrFeatures.corners;
-//        const scrDescriptors = scrFeatures.descriptors;
-//        let t0 = performance.now();
-//        let activeTemplates = Sites.getTemplates();
-//        for (let i = 0; i < activeTemplates.length; i++) {
-//            const template = activeTemplates[i];
-//            const res = matchOrbFeatures(scrCorners, scrDescriptors, template.patternCorners,
-//                template.patternDescriptors, template.site);
-//            if (res) {
-//                let t1 = performance.now();
-//                console.log("Match found for : " + template.site , " time taken : " + (t1-t0) + "ms", Date());
-//                res.template = template;
-//                return Promise.resolve(res);
-//            }
-//        }
-//        return Promise.resolve(null);
-//    }
+   function matchTemplates(scrFeatures) {
+       const scrCorners = scrFeatures.corners;
+       const scrDescriptors = scrFeatures.descriptors;
+       let t0 = performance.now();
+       let activeTemplates = Sites.getTemplates();
+       for (let i = 0; i < activeTemplates.length; i++) {
+           const template = activeTemplates[i];
+           const res = matchOrbFeatures(scrCorners, scrDescriptors, template.patternCorners,
+               template.patternDescriptors, template.site);
+           if (res) {
+               let t1 = performance.now();
+               console.log("Match found for : " + template.site , " time taken : " + (t1-t0) + "ms", Date());
+               res.template = template;
+               return Promise.resolve(res);
+           }
+       }
+       return Promise.resolve(null);
+   }
 
-//    function makeCorrespondenceImage(match, screenshot, features) {
-//        if (!match) {
-//            return Promise.resolve(null);
-//        }
-//        return findCorrespondence(screenshot, features.corners , match.template, match.matches, match.matchCount,
-//            match.mask);
-//    }
-// }
+   function makeCorrespondenceImage(match, screenshot, features) {
+       if (!match) {
+           return Promise.resolve(null);
+       }
+       return findCorrespondence(screenshot, features.corners , match.template, match.matches, match.matchCount,
+           match.mask);
+   }
+}
 var resultList=[];
 function setButtons(enable){
     document.getElementById("all").disabled=enable;
