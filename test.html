@@ -1,44 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        table {
-          /* border-collapse: collapse; */
-          width: 100%;
-        }
-        
-        th, td {
-          text-align: center;
-          padding: 8px;
-        }
-        
-        tr:nth-child(even){background-color: #f2f2f2}
-        
-        th {
-          background-color: #4CAF50;
-          color: white;
-        }
-    </style>
-        
-    <script src="https://sudhirkr.github.io/spotphish-model/config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-    <script src="https://sudhirkr.github.io/spotphish-model/track-result.js"></script>
-    <script src="https://sudhirkr.github.io/spotphish-model/TensorflowTF.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
-    <script src="https://sudhirkr.github.io/spotphish-model/test.js"> </script>
-    <title>test spotphish</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      /* border-collapse: collapse; */
+      width: 100%;
+    }
+
+    th,
+    td {
+      text-align: center;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .form-inline {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .form-inline input[type="url"] {
+      flex: 1;
+      vertical-align: middle;
+      margin: 5px 10px 5px 0;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+    }
+
+    .form-inline input[type="submit"] {
+      padding: 10px 20px;
+      background-color: dodgerblue;
+      border: 1px solid #ddd;
+      color: white;
+      cursor: pointer;
+    }
+
+    .form-inline button {
+      flex: 1;
+      padding: 10px 20px;
+      background-color: dodgerblue;
+      border: 1px solid #ddd;
+      color: white;
+      cursor: pointer;
+    }
+
+    progress {
+      width: 100%;
+      height: 30px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://sudhirkr.github.io/spotphish-model/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+  <script src="https://sudhirkr.github.io/spotphish-model/track-result.js"></script>
+  <script src="https://sudhirkr.github.io/spotphish-model/TensorflowTF.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+  <script src="./test.js"> </script>
+
+  <!-- <script src="http://ctphab.lan.coriolis.co.in/diffusion/43/browse/vijay/externalCode/jsfeat.js"> </script> -->
+  <!-- <script src="http://ctphab.lan.coriolis.co.in/diffusion/43/browse/vijay/orb-features.js"></script> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsfeat/0.0.8/jsfeat-min.js"
+    integrity="sha512-zZEK5+nSU4BrKwKactZrPLja1kvvur73kH1LqoXeevsadXaggYTVjctNwCCjFAs9Jfs8+CxkbW5clvPLUDyQOA=="
+    crossorigin="anonymous"></script>
+  <title>test spotphish</title>
 </head>
+
 <body>
-    <table style="width:100%">
-        <tr>
-          <th>Label</th>
-          <th>Prediction</th>
-          <th>Confidence</th>
-          <th>Time Taken</th>
-          <th>Image</th>
-        </tr>
-      </table>
+  <form id="myForm" class="form-inline" onsubmit="run();return false;">
+    <input value="https://raw.githubusercontent.com/sudhirkr/spotphish-model/master/web_model/model.json" type="url"
+      placeholder="Enter url of your model" id="url" />
+    <input type="submit" />
+  </form>
+  <!-- <button onclick="templateMatchingModel()">Template matching model</button><br> -->
+  <progress id="progress" value="0" max="100"></progress>
+  <div class="form-inline">
+    <button id="all">All</button>
+    <button id="true">True</button>
+    <button id="false">False</button>
+    <button id="no">No Prediction</button>
+
+  </div>
+
 </body>
+
 </html>

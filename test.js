@@ -1,3 +1,4 @@
+
 async function loadTestDataFrom(URL) {
     let response = await fetch(URL);
     let data = await response.json();
@@ -12,7 +13,7 @@ async function displayResult(label_, result) {
     let confidence = document.createElement("td");
     let time_taken = document.createElement("td");
     let image = document.createElement("td");
-    
+
     tr.appendChild(label);
     tr.appendChild(prediction);
     tr.appendChild(confidence);
@@ -40,36 +41,187 @@ async function configureMachineLearningModel(log_url, model_url, labels) {
 
 async function reportAverageTime(average_time, score) {
     let time = document.createElement("p");
-    time.style.cssText = "font-size: 30px; font-weight: bold; color: darkgreen";
+    time.style.cssText = "font-size: 20px; font-weight: bold; color: darkgreen";
     time.innerHTML = "Average Prediction time: " + average_time + " sec" + ", Score: " + score;
     document.body.appendChild(time);
 }
 
+async function showSummary(true_pred,false_pred,no_pred, total_pred) {
+    let Summary = document.createElement("p");
+    Summary.style.cssText = "font-size: 20px; font-weight: bold; color: red";
+    Summary.innerHTML = "True:" +true_pred + ", False:" +false_pred +", No Prediction:" + no_pred+", Total:"+total_pred;
+    document.body.appendChild(Summary);
+}
+// async function templateMatchingModel(){
+//     console.log("inside template matching");
+//     let data = await loadTestDataFrom(test_dataset_url);
+
+
+//     for (let index = 0; index < 1; index++) {
+//         let screenshot=data.image[index].url_src;
+//         findOrbFeatures(screenshot).then(x=>console.log(x));
+//     }
+//     return;
+
+//     let screenshot, features, match;
+
+
+//     findOrbFeatures(screenshot)
+//        .then(x => features = x)
+//        .then(features => matchTemplates(features))
+//        .then(x => match = x)
+//        .then(match => makeCorrespondenceImage(match, screenshot, features))
+//        .then(corr_img => ({match, corr_img}));
+
+//    function matchTemplates(scrFeatures) {
+//        const scrCorners = scrFeatures.corners;
+//        const scrDescriptors = scrFeatures.descriptors;
+//        let t0 = performance.now();
+//        let activeTemplates = Sites.getTemplates();
+//        for (let i = 0; i < activeTemplates.length; i++) {
+//            const template = activeTemplates[i];
+//            const res = matchOrbFeatures(scrCorners, scrDescriptors, template.patternCorners,
+//                template.patternDescriptors, template.site);
+//            if (res) {
+//                let t1 = performance.now();
+//                console.log("Match found for : " + template.site , " time taken : " + (t1-t0) + "ms", Date());
+//                res.template = template;
+//                return Promise.resolve(res);
+//            }
+//        }
+//        return Promise.resolve(null);
+//    }
+
+//    function makeCorrespondenceImage(match, screenshot, features) {
+//        if (!match) {
+//            return Promise.resolve(null);
+//        }
+//        return findCorrespondence(screenshot, features.corners , match.template, match.matches, match.matchCount,
+//            match.mask);
+//    }
+// }
+var resultList=[];
+function setButtons(enable){
+    document.getElementById("all").disabled=enable;
+    document.getElementById("true").disabled=enable;
+    document.getElementById("false").disabled=enable;
+    document.getElementById("no").disabled=enable;
+    $("input, select, option, textarea", "#myForm").prop('disabled',enable);
+
+}
 async function run() {
-    let ml_system = await configureMachineLearningModel(system_log_server_url, algorithm_tensorflow_graph_model_url, algorithm_tensorflow_labels);
+    setButtons(true);
+
+    resultList=[];
+    var progress=document.getElementById("progress");
+
+    let url= document.getElementById("url").value;
+    if(url===""){
+        alert("No url is specified");
+        return ;
+    }
+    let ml_system = await configureMachineLearningModel(system_log_server_url,url, algorithm_tensorflow_labels);
     console.log("ML system configured.",ml_system);
     let data = await loadTestDataFrom(test_dataset_url);
     console.log("Test data loaded.");
-    let total_time = 0, true_pred = 0, total_pred = 0;
+    let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
     // console.log(data.image[0].url_src);
+    progress.value=0;
     for (let index = 0; index < data.image.length; index++) {
         let result = await ml_system.tensorflow_tf.predict(data.image[index].url_src);
-        console.log(result);
-        displayResult(data.image[index].label,result);
+        // console.log(result);
         total_time += result.time_taken;
+        let category="";
         if (data.image[index].label == result.site) {
+            category="true";
             true_pred++;
+        }else if(result.site=="NaN"){
+
+            result.site="Not Predicted"
+            category="no";
+
+            no_pred++;
+        }else{
+            category="false";
+
+            false_pred++;
         }
+        resultList.push({category:category,label:data.image[index].label,result:result});
+
         total_pred++;
+        progress.value=total_pred*100/data.image.length;
     }
+
     let average_time = total_time/data.image.length;
     let score = (true_pred/total_pred) * 100;
+    // document.getElementsByTagName("table")[0].remove();
+
+    displayResultList(resultList);
     reportAverageTime(average_time, score);
+    showSummary(true_pred,false_pred,no_pred,total_pred);
     // let result = await ml_system.tensorflow_tf.debugPredict(data.image[14].url_src);
     // console.log(result);
-    // displayResult(data.image[14].label,result);   
+    // displayResult(data.image[14].label,result);
 }
+function displayResultList(list){
+    setButtons(false)
+    let t=document.getElementsByTagName("table");
+    console.log(t);
+    if(t===undefined || t.length===0){
 
-run();
+    }else{
+        t[0].remove();
+    }
+    let table = document.createElement("table");
+    let tr = document.createElement("tr");
+    let label = document.createElement("th");
+    let prediction = document.createElement("th");
+    let confidence = document.createElement("th");
+    let time_taken = document.createElement("th");
+    let image = document.createElement("th");
+
+    tr.appendChild(label);
+    tr.appendChild(prediction);
+    tr.appendChild(confidence);
+    tr.appendChild(time_taken);
+    tr.appendChild(image);
+    table.appendChild(tr);
+    label.innerHTML = "label";
+    prediction.innerHTML = "Prediction";
+    confidence.innerHTML = "Confidence";
+    time_taken.innerHTML = "Time taken";
+    image.innerHTML = "Image";
+
+    document.body.appendChild(table);
+    for(let r of list){
+
+        displayResult(r.label,r.result);
+
+    }
+
+}
+$('document').ready(function(){
+    document.getElementById("false").addEventListener("click", ()=>{
+        displayResultList(resultList.filter(x=>x.category==="false"))
+
+    });
+    document.getElementById("all").addEventListener("click", ()=>{
+        displayResultList(resultList.filter(x=>true))
+
+    });
+    document.getElementById("no").addEventListener("click", ()=>{
+        displayResultList(resultList.filter(x=>x.category==="no"))
+
+    });
+    document.getElementById("true").addEventListener("click", ()=>{
+        displayResultList(resultList.filter(x=>x.category==="true"))
+
+
+    });
+});
+
+
+
+// run();
 // return tensorflow_tf.debugPredict(res, screenshot, tab.url);
-// 
+//
