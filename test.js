@@ -3,6 +3,11 @@ async function loadTestDataFrom(URL) {
     let response = await fetch(URL);
     let data = await response.json();
     console.log(data);
+    TEST_DATA= data;
+}
+async function loadTemplates(URL) {
+    let response = await fetch(URL);
+    let data = await response.json();
     return data;
 }
 
@@ -52,66 +57,98 @@ async function showSummary(true_pred,false_pred,no_pred, total_pred) {
     Summary.innerHTML = "True:" +true_pred + ", False:" +false_pred +", No Prediction:" + no_pred+", Total:"+total_pred;
     document.body.appendChild(Summary);
 }
-async function templateMatchingModel(){
-    console.log("inside template matching");
-    let data = await loadTestDataFrom(test_dataset_url);
-
-
-    for (let index = 0; index < 1; index++) {
-        let screenshot=data.image[index].url_src;
-        findOrbFeatures(screenshot).then(x=>console.log(x));
+var TEMPLATES=[];
+var TEST_DATA;
+async function getTemplates(){
+    let data=await loadTemplates("https://spotphish.github.io/feeds/main/main.json");
+    let templates=[];
+    for(let site of data.sites){
+        if(site.templates!==undefined)
+        templates.push(site.templates)
     }
-    return;
+    templates=_.flatten(templates);
+    for(let temp of templates){
+        createPatterns(temp.image).then(x=>{
+            temp={...temp,...x}
+            TEMPLATES.push(temp)
+        });
+    }
+}
+async function templateMatchingModel(){
+    disableButtons(true);
+    resultList=[];
+    var progress=document.getElementById("progress");
+    progress.value=0;
 
-    let screenshot, features, match;
+    let data=TEST_DATA;
+    let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
 
+    for (let index = 0; index < data.image.length; index++) {
+        let screenshot = data.image[index].url_src;
+        let features=await findOrbFeatures(screenshot);
+        let match=await matchTemplates(features,screenshot);
+        resultList.push({category:match.category,label:data.image[index].label,result:{site:match.template.name,confidence:(match.goodMatches/match.ncorners)*100,time_taken:match.time_taken,image:match.image}})
+        if(match.category=="true"){
+          true_pred++;
+        }else  if(match.category=="false"){
+          false_pred++;
+        }else  if(match.category=="no"){
+          no_pred++;
+        }
+        total_time+= match.time_taken
+        total_pred++;
+        progress.value=(index+1)*100/data.image.length;
+    }
+    let average_time = total_time/data.image.length;
+    let score = (true_pred/total_pred) * 100;
 
-    findOrbFeatures(screenshot)
-       .then(x => features = x)
-       .then(features => matchTemplates(features))
-       .then(x => match = x)
-       .then(match => makeCorrespondenceImage(match, screenshot, features))
-       .then(corr_img => ({match, corr_img}));
+    displayResultList(resultList);
+    reportAverageTime(average_time, score);
+    showSummary(true_pred,false_pred,no_pred,total_pred);
 
-   function matchTemplates(scrFeatures) {
-       const scrCorners = scrFeatures.corners;
-       const scrDescriptors = scrFeatures.descriptors;
-       let t0 = performance.now();
-       let activeTemplates = Sites.getTemplates();
-       for (let i = 0; i < activeTemplates.length; i++) {
-           const template = activeTemplates[i];
-           const res = matchOrbFeatures(scrCorners, scrDescriptors, template.patternCorners,
-               template.patternDescriptors, template.site);
-           if (res) {
-               let t1 = performance.now();
-               console.log("Match found for : " + template.site , " time taken : " + (t1-t0) + "ms", Date());
-               res.template = template;
-               return Promise.resolve(res);
-           }
-       }
-       return Promise.resolve(null);
-   }
+}
+async function matchTemplates(scrFeatures,screenshot) {
+    const scrCorners = scrFeatures.corners;
+    const scrDescriptors = scrFeatures.descriptors;
+    let t0 = performance.now();
 
-   function makeCorrespondenceImage(match, screenshot, features) {
-       if (!match) {
-           return Promise.resolve(null);
-       }
-       return findCorrespondence(screenshot, features.corners , match.template, match.matches, match.matchCount,
-           match.mask);
-   }
+    for (let i = 0; i < TEMPLATES.length; i++) {
+        let template = TEMPLATES[i];
+
+        const res = matchOrbFeatures(scrCorners, scrDescriptors, template.patternCorners,
+            template.patternDescriptors, template.name);
+        if (res) {
+            let t1 = performance.now();
+            res.category="true";
+            res.template = template;
+            res.time_taken=(t1-t0)/1000;
+            let corr_image= await makeCorrespondenceImage(res,screenshot,scrFeatures);
+            res.image=corr_image;
+            return Promise.resolve(res);
+        }
+    }
+    return Promise.resolve({category:"no",goodMatches:0,ncorners:0, time_taken:(performance.now()-t0)/1000,image:screenshot,template:{name:"No template"}});
+}
+
+async function makeCorrespondenceImage(match, screenshot, features) {
+    if (!match) {
+        return Promise.resolve(null);
+    }
+    return findCorrespondence(screenshot, features.corners , match.template, match.matches, match.matchCount,
+        match.mask);
 }
 var resultList=[];
-function setButtons(enable){
+function disableButtons(enable){
     document.getElementById("all").disabled=enable;
     document.getElementById("true").disabled=enable;
     document.getElementById("false").disabled=enable;
     document.getElementById("no").disabled=enable;
-    $("input, select, option, textarea", "#myForm").prop('disabled',enable);
+    $("input,button, select, option, textarea", "#myForm").prop('disabled',enable);
 
 }
 async function run() {
-    setButtons(true);
 
+    disableButtons(true);
     resultList=[];
     var progress=document.getElementById("progress");
 
@@ -120,51 +157,42 @@ async function run() {
         alert("No url is specified");
         return ;
     }
+
     let ml_system = await configureMachineLearningModel(system_log_server_url,url, algorithm_tensorflow_labels);
-    console.log("ML system configured.",ml_system);
-    let data = await loadTestDataFrom(test_dataset_url);
-    console.log("Test data loaded.");
+    let data=TEST_DATA;
+
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
-    // console.log(data.image[0].url_src);
     progress.value=0;
     for (let index = 0; index < data.image.length; index++) {
         let result = await ml_system.tensorflow_tf.predict(data.image[index].url_src);
-        // console.log(result);
+        console.log(result);
         total_time += result.time_taken;
         let category="";
         if (data.image[index].label == result.site) {
             category="true";
             true_pred++;
         }else if(result.site=="NaN"){
-
             result.site="Not Predicted"
             category="no";
-
             no_pred++;
         }else{
             category="false";
-
             false_pred++;
         }
         resultList.push({category:category,label:data.image[index].label,result:result});
-
         total_pred++;
         progress.value=total_pred*100/data.image.length;
     }
 
     let average_time = total_time/data.image.length;
     let score = (true_pred/total_pred) * 100;
-    // document.getElementsByTagName("table")[0].remove();
 
     displayResultList(resultList);
     reportAverageTime(average_time, score);
     showSummary(true_pred,false_pred,no_pred,total_pred);
-    // let result = await ml_system.tensorflow_tf.debugPredict(data.image[14].url_src);
-    // console.log(result);
-    // displayResult(data.image[14].label,result);
 }
 function displayResultList(list){
-    setButtons(false)
+    disableButtons(false)
     let t=document.getElementsByTagName("table");
     console.log(t);
     if(t===undefined || t.length===0){
@@ -201,6 +229,9 @@ function displayResultList(list){
 
 }
 $('document').ready(function(){
+    getTemplates()
+    loadTestDataFrom(test_dataset_url);
+
     document.getElementById("false").addEventListener("click", ()=>{
         displayResultList(resultList.filter(x=>x.category==="false"))
 
@@ -219,9 +250,3 @@ $('document').ready(function(){
 
     });
 });
-
-
-
-// run();
-// return tensorflow_tf.debugPredict(res, screenshot, tab.url);
-//

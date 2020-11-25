@@ -21,6 +21,7 @@
     }
 
     th {
+      border-radius: 8px;
       background-color: #4CAF50;
       color: white;
     }
@@ -33,6 +34,7 @@
 
     .form-inline input[type="url"] {
       flex: 1;
+      border-radius: 8px;
       vertical-align: middle;
       margin: 5px 10px 5px 0;
       padding: 10px;
@@ -42,6 +44,10 @@
 
     .form-inline input[type="submit"] {
       padding: 10px 20px;
+      vertical-align: middle;
+      margin: 5px 10px 5px 0;
+
+      border-radius: 8px;
       background-color: dodgerblue;
       border: 1px solid #ddd;
       color: white;
@@ -50,11 +56,23 @@
 
     .form-inline button {
       flex: 1;
+      vertical-align: middle;
+      margin: 5px 10px 5px 0;
+      border-radius: 8px;
       padding: 10px 20px;
       background-color: dodgerblue;
       border: 1px solid #ddd;
       color: white;
       cursor: pointer;
+    }
+
+
+
+    button:disabled,
+    button[disabled] {
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #666666;
     }
 
     progress {
@@ -69,15 +87,10 @@
   <script src="https://sudhirkr.github.io/spotphish-model/TensorflowTF.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
   <script src="./test.js"> </script>
+  <script src="./templateMatching/orb-features.js"> </script>
+  <script src="./templateMatching/lodash.min.js"></script>
 
-  <!-- <script src="http://ctphab.lan.coriolis.co.in/diffusion/43/browse/vijay/externalCode/jsfeat.js"> </script> -->
-  <script src="https://gitlab.corp.coriolis.in/vijays1/spotphish/-/raw/master/orb-features.js"></script>
-  <script src="https://rawgit.com/vijays1/spotphish/master/orb-features.js"></script>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsfeat/0.0.8/jsfeat-min.js"
-    integrity="sha512-zZEK5+nSU4BrKwKactZrPLja1kvvur73kH1LqoXeevsadXaggYTVjctNwCCjFAs9Jfs8+CxkbW5clvPLUDyQOA=="
-    crossorigin="anonymous"></script>
+  <script src="./templateMatching/jsfeat.js"></script>
   <title>test spotphish</title>
 </head>
 
@@ -86,8 +99,10 @@
     <input value="https://raw.githubusercontent.com/sudhirkr/spotphish-model/master/web_model/model.json" type="url"
       placeholder="Enter url of your model" id="url" />
     <input type="submit" />
+    <h1>OR</h1>
+    <button onclick="templateMatchingModel()">Template matching model (Confidence more than 30%)</button><br>
+
   </form>
-  <button onclick="templateMatchingModel()">Template matching model</button><br>
   <progress id="progress" value="0" max="100"></progress>
   <div class="form-inline">
     <button id="all">All</button>
