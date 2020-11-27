@@ -83,7 +83,7 @@ async function templateMatching(){
     let data=TEST_DATA;
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
 
-    for (let index = 0; index <1; index++) {
+    for (let index = 0; index <data.image.length; index++) {
         let screenshot = data.image[index].url_src;
         let features=await findOrbFeatures(screenshot);
         let match=await matchTemplates(features,screenshot);
@@ -185,7 +185,7 @@ async function tfLogoDetection() {
     let data=TEST_DATA;
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
     progress.value=0;
-    for (let index = 0; index < 1; index++) {
+    for (let index = 0; index < data.image.length; index++) {
         let result = await ml_system.tensorflow_tf.predict(data.image[index].url_src);
         console.log(result);
         total_time += result.time_taken;
