@@ -3,7 +3,7 @@ Test different models against the [dataset](load-dataset.json) of [phishing page
 
 ## Get Started
 - Clone this repository
-- Open Google Chrome ![Installation]
+- Open Google Chrome [Refer this](install.gif)
 - Visit chrome://flags/
 - Search and Enable WebGL 2.0 Compute and WebGL Draft Extensions flags
 - Run test.html
@@ -33,6 +33,7 @@ Components used and their licenses
 ## License
 
 MIT
-[Installation]: install.gif
+
+
 
 
