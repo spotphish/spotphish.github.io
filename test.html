@@ -21,7 +21,7 @@
     }
 
     th {
-      border-radius: 8px;
+      /* border-radius: 8px; */
       background-color: #4CAF50;
       color: white;
     }
@@ -32,11 +32,17 @@
       align-items: center;
     }
 
+    .buttons-inline {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
     .form-inline select {
       flex: 1;
       border-radius: 8px;
       vertical-align: middle;
-      margin: 5px 10px 5px 10px;
+      margin: 5px 10px 5px 0px;
       padding: 10px;
       background-color: #fff;
       border: 1px solid #ddd;
@@ -44,7 +50,19 @@
 
     .form-inline button {
       vertical-align: middle;
-      margin: 5px 10px 5px 10px;
+      margin: 5px 10px 5px 0px;
+      border-radius: 8px;
+      padding: 10px 20px;
+      background-color: dodgerblue;
+      border: 1px solid #ddd;
+      color: white;
+      cursor: pointer;
+    }
+
+    .buttons-inline button {
+      flex: 1;
+      vertical-align: middle;
+      margin: 5px 10px 5px 0px;
       border-radius: 8px;
       padding: 10px 20px;
       background-color: dodgerblue;
@@ -100,7 +118,7 @@
     <button id="run" onclick="run()">Run</button>
   </div>
   <progress id="progress" value="0" max="100"></progress>
-  <div class="form-inline">
+  <div class="buttons-inline">
     <button id="all">All</button>
     <button id="true">True</button>
     <button id="false">False</button>
