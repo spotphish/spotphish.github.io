@@ -2,7 +2,6 @@
 async function loadTestDataFrom(URL) {
     let response = await fetch(URL);
     let data = await response.json();
-    console.log(data);
     TEST_DATA= data;
 }
 async function loadTemplates(URL) {
@@ -83,24 +82,36 @@ async function templateMatchingModel(){
     let data=TEST_DATA;
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
 
-    for (let index = 0; index < data.image.length; index++) {
+    for (let index = 0; index <data.image.length; index++) {
         let screenshot = data.image[index].url_src;
         let features=await findOrbFeatures(screenshot);
         let match=await matchTemplates(features,screenshot);
-        resultList.push({category:match.category,label:data.image[index].label,result:{site:match.template.name,confidence:(match.goodMatches/match.ncorners)*100,time_taken:match.time_taken,image:match.image}})
-        if(match.category=="true"){
-          true_pred++;
-        }else  if(match.category=="false"){
-          false_pred++;
-        }else  if(match.category=="no"){
-          no_pred++;
+           let result = {
+            site:match.template.name,
+            confidence:(match.goodMatches/match.ncorners)*100,
+            time_taken:match.time_taken,
+            image:match.image
         }
-        total_time+= match.time_taken
-        total_pred++;
-        progress.value=(index+1)*100/data.image.length;
+           total_time += result.time_taken;
+           let category="";
+           if (data.image[index].label == result.site) {
+               category="true";
+               true_pred++;
+           }else if(result.site=="NaN"){
+               result.site="Not Predicted"
+               category="no";
+               no_pred++;
+           }else{
+               category="false";
+               false_pred++;
+           }
+           resultList.push({category:category,label:data.image[index].label,result:result});
+           total_pred++;
+           progress.value=total_pred*100/data.image.length;
     }
     let average_time = total_time/data.image.length;
     let score = (true_pred/total_pred) * 100;
+
 
     displayResultList(resultList);
     reportAverageTime(average_time, score);
@@ -111,23 +122,33 @@ async function matchTemplates(scrFeatures,screenshot) {
     const scrCorners = scrFeatures.corners;
     const scrDescriptors = scrFeatures.descriptors;
     let t0 = performance.now();
-
+    let max=0;
+    let result=null;
     for (let i = 0; i < TEMPLATES.length; i++) {
         let template = TEMPLATES[i];
-
         const res = matchOrbFeatures(scrCorners, scrDescriptors, template.patternCorners,
             template.patternDescriptors, template.name);
         if (res) {
             let t1 = performance.now();
-            res.category="true";
             res.template = template;
             res.time_taken=(t1-t0)/1000;
             let corr_image= await makeCorrespondenceImage(res,screenshot,scrFeatures);
             res.image=corr_image;
-            return Promise.resolve(res);
+            let confidence=res.goodMatches/res.ncorners;
+
+            if(confidence>max){
+                max=confidence;
+                result=res;
+            }
         }
     }
-    return Promise.resolve({category:"no",goodMatches:0,ncorners:0, time_taken:(performance.now()-t0)/1000,image:screenshot,template:{name:"No template"}});
+    console.log(result);
+    if(result==null){
+        result={goodMatches:0,ncorners:0, template:{name:"NaN"},
+        time_taken:(performance.now()-t0)/1000,
+        image:screenshot}
+    }
+    return Promise.resolve(result);
 }
 
 async function makeCorrespondenceImage(match, screenshot, features) {

@@ -191,7 +191,6 @@ const loadImage = (imageUrl, canvasElement) => {
 
 function findOrbFeatures(screenShot) {
     return loadImage(screenShot).then(image => {
-        console.log(image);
 
         var threshold = 10;
         jsfeat.fast_corners.set_threshold(threshold);
