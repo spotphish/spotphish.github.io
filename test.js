@@ -73,7 +73,8 @@ async function getTemplates(){
         });
     }
 }
-async function templateMatchingModel(){
+async function templateMatching(){
+    console.log("templateMatching");
     disableButtons(true);
     resultList=[];
     var progress=document.getElementById("progress");
@@ -82,7 +83,7 @@ async function templateMatchingModel(){
     let data=TEST_DATA;
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
 
-    for (let index = 0; index <data.image.length; index++) {
+    for (let index = 0; index <1; index++) {
         let screenshot = data.image[index].url_src;
         let features=await findOrbFeatures(screenshot);
         let match=await matchTemplates(features,screenshot);
@@ -150,7 +151,13 @@ async function matchTemplates(scrFeatures,screenshot) {
     }
     return Promise.resolve(result);
 }
-
+function run(){
+   let url= document.getElementById("urls").value;
+   switch(url){
+       case "tfLogoDetection": tfLogoDetection();break;
+       case "templateMatching": templateMatching();break;
+   }
+}
 async function makeCorrespondenceImage(match, screenshot, features) {
     if (!match) {
         return Promise.resolve(null);
@@ -164,27 +171,21 @@ function disableButtons(enable){
     document.getElementById("true").disabled=enable;
     document.getElementById("false").disabled=enable;
     document.getElementById("no").disabled=enable;
-    $("input,button, select, option, textarea", "#myForm").prop('disabled',enable);
+    document.getElementById("run").disabled=enable;
+
 
 }
-async function run() {
+async function tfLogoDetection() {
+    console.log("tfLogo");
 
     disableButtons(true);
     resultList=[];
     var progress=document.getElementById("progress");
-
-    let url= document.getElementById("url").value;
-    if(url===""){
-        alert("No url is specified");
-        return ;
-    }
-
-    let ml_system = await configureMachineLearningModel(system_log_server_url,url, algorithm_tensorflow_labels);
+    let ml_system = await configureMachineLearningModel(system_log_server_url,algorithm_tensorflow_graph_model_url, algorithm_tensorflow_labels);
     let data=TEST_DATA;
-
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
     progress.value=0;
-    for (let index = 0; index < data.image.length; index++) {
+    for (let index = 0; index < 1; index++) {
         let result = await ml_system.tensorflow_tf.predict(data.image[index].url_src);
         console.log(result);
         total_time += result.time_taken;

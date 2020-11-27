@@ -32,7 +32,7 @@
       align-items: center;
     }
 
-    .form-inline input[type="url"] {
+    .form-inline select {
       flex: 1;
       border-radius: 8px;
       vertical-align: middle;
@@ -42,20 +42,7 @@
       border: 1px solid #ddd;
     }
 
-    .form-inline input[type="submit"] {
-      padding: 10px 20px;
-      vertical-align: middle;
-      margin: 5px 10px 5px 10px;
-
-      border-radius: 8px;
-      background-color: dodgerblue;
-      border: 1px solid #ddd;
-      color: white;
-      cursor: pointer;
-    }
-
     .form-inline button {
-      flex: 1;
       vertical-align: middle;
       margin: 5px 10px 5px 10px;
       border-radius: 8px;
@@ -65,8 +52,6 @@
       color: white;
       cursor: pointer;
     }
-
-
 
     button:disabled,
     button[disabled] {
@@ -102,14 +87,18 @@
 </head>
 
 <body>
-  <form id="myForm" class="form-inline" onsubmit="run();return false;">
-    <input value="https://raw.githubusercontent.com/sudhirkr/spotphish-model/master/web_model/model.json" type="url"
-      placeholder="Enter url of your model" id="url" />
-    <input type="submit" />
-    <h1>OR</h1>
-    <button onclick="templateMatchingModel()">Template matching model (Confidence more than 30%)</button><br>
+  <div class="form-inline">
+    <!-- <input value="" type="url"
+      placeholder="Enter url of your model" id="url" /> -->
+    <label for="urls">Choose a Model:</label>
 
-  </form>
+    <select name="urls" id="urls">
+      <option value="tfLogoDetection">TF Logo
+        Detection</option>
+      <option value="templateMatching">Template Matching</option>
+    </select>
+    <button id="run" onclick="run()">Run</button>
+  </div>
   <progress id="progress" value="0" max="100"></progress>
   <div class="form-inline">
     <button id="all">All</button>
