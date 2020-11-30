@@ -3,9 +3,11 @@ Test different models against the [dataset](load-dataset.json) of [phishing page
 
 ## Get Started
 - Clone this repository
-- Open Google Chrome [Refer this](install.gif)
+- Open Google Chrome
+If you want to run deep learning model like TF-logo-detection then follow next two steps:
 - Visit chrome://flags/
-- Search and Enable WebGL 2.0 Compute and WebGL Draft Extensions flags
+- Search and Enable WebGL 2.0 Compute and WebGL Draft Extensions flags [Refer this](install.gif)
+Continue here:
 - Run test.html
 - Select the model you want to test
 - Click Run
