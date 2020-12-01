@@ -277,7 +277,7 @@ function createPatterns(logo) {
             }
             jsfeat.orb.describe(lev_img, lev_corners, corners_num, lev_descr);
 
-            console.log("train " + lev_img.cols + "x" + lev_img.rows + " points: " + corners_num);
+            // console.log("train " + lev_img.cols + "x" + lev_img.rows + " points: " + corners_num);
 
             sc -= sc_pc;
 
@@ -302,7 +302,7 @@ function createPatterns(logo) {
                     lev_corners[i].y *= 1./sc;
                 }
 
-                console.log("train " + lev_img.cols + "x" + lev_img.rows + " points: " + corners_num);
+                // console.log("train " + lev_img.cols + "x" + lev_img.rows + " points: " + corners_num);
                 sc -= sc_pc;
                 res.patternCorners = patternCorners;
                 res.patternDescriptors = patternDescriptors;

@@ -74,7 +74,6 @@ async function getTemplates(){
     }
 }
 async function templateMatching(){
-    console.log("templateMatching");
     disableButtons(true);
     resultList=[];
     var progress=document.getElementById("progress");
@@ -143,7 +142,6 @@ async function matchTemplates(scrFeatures,screenshot) {
             }
         }
     }
-    console.log(result);
     if(result==null){
         result={goodMatches:0,ncorners:0, template:{name:"NaN"},
         time_taken:(performance.now()-t0)/1000,
@@ -176,7 +174,6 @@ function disableButtons(enable){
 
 }
 async function tfLogoDetection() {
-    console.log("tfLogo");
 
     disableButtons(true);
     resultList=[];
@@ -187,7 +184,6 @@ async function tfLogoDetection() {
     progress.value=0;
     for (let index = 0; index < data.image.length; index++) {
         let result = await ml_system.tensorflow_tf.predict(data.image[index].url_src);
-        console.log(result);
         total_time += result.time_taken;
         let category="";
         if (data.image[index].label == result.site) {
@@ -216,7 +212,6 @@ async function tfLogoDetection() {
 function displayResultList(list){
     disableButtons(false)
     let t=document.getElementsByTagName("table");
-    console.log(t);
     if(t===undefined || t.length===0){
 
     }else{
