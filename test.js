@@ -59,7 +59,7 @@ async function showSummary(true_pred,false_pred,no_pred, total_pred) {
 var TEMPLATES=[];
 var TEST_DATA;
 async function getTemplates(){
-    let data=await loadTemplates("https://spotphish.github.io/feeds/main/main.json");
+    let data=await loadTemplates("https://vijay-coriolis.github.io/main.json");
     let templates=[];
     for(let site of data.sites){
         if(site.templates!==undefined)
