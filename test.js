@@ -188,7 +188,7 @@ async function tfLogoDetection() {
         let result = await ml_system.tensorflow_tf.predict(data.image[index].url_src);
         total_time += result.time_taken;
         let category="";
-        if (data.image[index].label == result.site) {
+        if ( result.site.includes(data.image[index].label)) {
             category="true";
             true_pred++;
         }else if(result.site=="NaN"){
