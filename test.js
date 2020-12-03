@@ -96,7 +96,7 @@ async function templateMatching(){
         }
            total_time += result.time_taken;
            let category="";
-           if (data.image[index].label == result.site) {
+           if ( result.site.includes(data.image[index].label)) {
                category="true";
                true_pred++;
            }else if(result.site=="NaN"){
