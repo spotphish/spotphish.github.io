@@ -6,10 +6,6 @@
     },
     {
       "label": "Amazon",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Amazon2.jpg"
-    },
-    {
-      "label": "Amazon",
       "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Amazon3.png"
     },
     {
@@ -67,10 +63,6 @@
     {
       "label": "Dropbox",
       "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Dropbox3.png"
-    },
-    {
-      "label": "Dropbox",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Dropbox4.jpg"
     },
     {
       "label": "Dropbox",

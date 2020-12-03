@@ -1,0 +1,64 @@
+{
+    "image": [
+        {
+            "label": "Axis Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Axis-Bank.png"
+        },
+        {
+            "label": "Axis Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Axis-Bank-Login.png"
+        },
+        {
+            "label": "Axis Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Axis2.png"
+        },
+        {
+            "label": "Axis Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Axis8.png"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Hdfc4.png"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Hdfc5.png"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/HDFC-Bank.png"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/HDFC-Bank-login.png"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Hdfc10.png"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/ICICI-Bank.png"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/ICICI-Bank-login.png"
+        },
+        {
+            "label": "IDBI Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Idbi1.png"
+        },
+        {
+            "label": "IDBI Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/IDBI-Bank.png"
+        },
+        {
+            "label": "IDBI Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/IDBI-Bank-login.png"
+        },
+        {
+            "label": "IDBI Bank",
+            "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Idbi5.png"
+        }
+    ]
+}

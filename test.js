@@ -59,8 +59,8 @@ async function showSummary(true_pred,false_pred,no_pred, total_pred) {
 var TEMPLATES=[];
 var TEST_DATA;
 async function getTemplates(){
-    // let data=await loadTemplates("https://spotphish.github.io/feeds/main/main.json");
-    let data=await loadTemplates("https://vijay-coriolis.github.io/main.json");
+    // let data=await loadTemplates("https://spotphish.github.io/feeds/main/main.json");//other websites templates
+    let data=await loadTemplates("https://vijay-coriolis.github.io/main.json");//bank websites templates
 
     let templates=[];
     for(let site of data.sites){
@@ -249,9 +249,11 @@ function displayResultList(list){
 }
 $('document').ready(function(){
     getTemplates()
-    // loadTestDataFrom(test_dataset_url);
-    loadTestDataFrom(test_dataset_banks_url);
-    // loadTestDataFrom(test_dataset_others_url);
+    // loadTestDataFrom(test_dataset_url);//all websites testing images
+    // loadTestDataFrom(test_dataset_banks_jpg_url);//bank jpg website testing images
+    loadTestDataFrom(test_dataset_banks_png_url);//bank png website testing images
+    // loadTestDataFrom(test_dataset_others_url);//other website testing images
+
 
 
     document.getElementById("false").addEventListener("click", ()=>{
