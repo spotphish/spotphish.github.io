@@ -70,9 +70,11 @@ async function getTemplates(){
     templates=_.flatten(templates);
     for(let temp of templates){
         createPatterns(temp.image).then(x=>{
+
             temp={...temp,...x}
             TEMPLATES.push(temp)
-        });
+        }).catch(x=>{
+       });
     }
 }
 async function templateMatching(){
@@ -152,6 +154,7 @@ async function matchTemplates(scrFeatures,screenshot) {
     return Promise.resolve(result);
 }
 function run(){
+
    let url= document.getElementById("urls").value;
    switch(url){
        case "tfLogoDetection": tfLogoDetection();break;
