@@ -249,9 +249,9 @@ function displayResultList(list){
 }
 $('document').ready(function(){
     getTemplates()
-    // loadTestDataFrom(test_dataset_url);//all websites testing images
+    loadTestDataFrom(test_dataset_url);//all websites testing images
     // loadTestDataFrom(test_dataset_banks_jpg_url);//bank jpg website testing images
-    loadTestDataFrom(test_dataset_banks_png_url);//bank png website testing images
+    // loadTestDataFrom(test_dataset_banks_png_url);//bank png website testing images
     // loadTestDataFrom(test_dataset_others_url);//other website testing images
 
 
