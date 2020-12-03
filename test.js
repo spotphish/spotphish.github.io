@@ -43,10 +43,10 @@ async function configureMachineLearningModel(log_url, model_url, labels) {
     return {"report": report, "tensorflow_tf": tensorflow_tf};
 }
 
-async function reportAverageTime(average_time, score) {
+async function reportAverageTime(total_time,average_time, score) {
     let time = document.createElement("p");
     time.style.cssText = "font-size: 20px; font-weight: bold; color: darkgreen";
-    time.innerHTML = "Average Prediction time: " + average_time + " sec" + ", Score: " + score;
+    time.innerHTML ="Total Prediction time: " + total_time + " sec," + " Average Prediction time: " + average_time + " sec" + ", Score: " + score;
     document.body.appendChild(time);
 }
 
@@ -118,7 +118,7 @@ async function templateMatching(){
 
 
     displayResultList(resultList);
-    reportAverageTime(average_time, score);
+    reportAverageTime(total_time.toFixed(2),average_time.toFixed(2), score.toFixed(2));
     showSummary(true_pred,false_pred,no_pred,total_pred);
 
 }
@@ -211,7 +211,8 @@ async function tfLogoDetection() {
     let score = (true_pred/total_pred) * 100;
 
     displayResultList(resultList);
-    reportAverageTime(average_time, score);
+    reportAverageTime(total_time.toFixed(2),average_time.toFixed(2), score.toFixed(2));
+
     showSummary(true_pred,false_pred,no_pred,total_pred);
 }
 function displayResultList(list){
