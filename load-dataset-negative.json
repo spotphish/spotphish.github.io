@@ -163,6 +163,14 @@
     {
       "label": "incometax",
       "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/income-tax-login.png"
+    },
+    {
+      "label": "Facebook",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook19.png"
+    },
+    {
+      "label": "Facebook",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook20.png"
     }
   ]
 }

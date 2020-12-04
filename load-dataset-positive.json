@@ -197,14 +197,6 @@
       "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook18.png"
     },
     {
-      "label": "Facebook",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook19.png"
-    },
-    {
-      "label": "Facebook",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook20.png"
-    },
-    {
       "label": "Paypal",
       "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Paypal1.png"
     },

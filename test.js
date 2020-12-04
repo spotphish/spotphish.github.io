@@ -27,7 +27,7 @@ async function displayResult(label_, result) {
     label.innerHTML = label_;
     prediction.innerHTML = result.site;
     confidence.innerHTML = result.confidence + "%";
-    time_taken.innerHTML = result.time_taken + " sec";
+    time_taken.innerHTML = result.time_taken.toFixed(2) + " sec";
 
     var img = document.createElement("img");
     img.src = result.image;
@@ -103,6 +103,7 @@ async function templateMatching(){
                true_pred++;
            }else if(result.site=="NaN"){
                result.site="Not Predicted"
+               result.confidence=""
                category="no";
                no_pred++;
            }else{
@@ -209,6 +210,7 @@ async function tfLogoDetection() {
             true_pred++;
         }else if(result.site=="NaN"){
             result.site="Not Predicted"
+            result.site="";
             category="no";
             no_pred++;
         }else{
