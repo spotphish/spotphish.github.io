@@ -87,7 +87,7 @@ async function templateMatching(){
     let data=TEST_DATA;
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
 
-    for (let index = 0; index <1; index++) {
+    for (let index = 0; index < data.image.length; index++) {
         let screenshot = data.image[index].url_src;
         let features=await findOrbFeatures(screenshot);
         let match=await matchTemplates(features,screenshot);
@@ -188,7 +188,12 @@ function disableButtons(enable){
     document.getElementById("false").disabled=enable;
     document.getElementById("no").disabled=enable;
     document.getElementById("runPositiveTest").disabled=enable;
-    document.getElementById("runNegativeTest").disabled=enable;
+    let url= document.getElementById("urls").value;
+    switch(url){
+        case "tfLogoDetection":break;
+        case "templateMatching":document.getElementById("runNegativeTest").disabled=enable;break;
+    }
+
 
 
 }
@@ -201,7 +206,7 @@ async function tfLogoDetection() {
     let data=TEST_DATA;
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
     progress.value=0;
-    for (let index = 0; index < 1; index++) {
+    for (let index = 0; index < data.image.length; index++) {
         let result = await ml_system.tensorflow_tf.predict(data.image[index].url_src);
         total_time += result.time_taken;
         let category="";
