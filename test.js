@@ -155,8 +155,8 @@ async function matchTemplates(scrFeatures,screenshot) {
     }
     return Promise.resolve(result);
 }
-function runPositive(){
-    loadTestDataFrom(test_dataset_positive_url);
+async function  runPositive(){
+   await loadTestDataFrom(test_dataset_positive_url);
 
    let url= document.getElementById("urls").value;
    switch(url){
@@ -164,8 +164,8 @@ function runPositive(){
        case "templateMatching": templateMatching();break;
    }
 }
-function runNegative(){
-    loadTestDataFrom(test_dataset_negative_url);
+ async function runNegative(){
+ await   loadTestDataFrom(test_dataset_negative_url);
 
    let url= document.getElementById("urls").value;
    switch(url){
