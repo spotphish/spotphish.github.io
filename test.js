@@ -44,17 +44,18 @@ async function configureMachineLearningModel(log_url, model_url, labels) {
 }
 
 async function reportAverageTime(total_time,average_time, score) {
-    let time = document.createElement("p");
-    time.style.cssText = "font-size: 20px; font-weight: bold; color: darkgreen";
-    time.innerHTML ="Total Prediction time: " + total_time + " sec," + " Average Prediction time: " + average_time + " sec" ;
-    document.body.appendChild(time);
+    disableButtons(false)
+
+    document.getElementById("averageTime").innerHTML ="Total Prediction time: " + total_time + " sec," + " Average Prediction time: " + average_time + " sec" ;
+
 }
 
 async function showSummary(true_pred,false_pred,no_pred, total_pred) {
-    let Summary = document.createElement("p");
-    Summary.style.cssText = "font-size: 20px; font-weight: bold; color: red";
-    Summary.innerHTML = "True:" +true_pred + ", False:" +false_pred +", No Prediction:" + no_pred+", Total:"+total_pred;
-    document.body.appendChild(Summary);
+    disableButtons(false)
+
+     document.getElementById("summary").innerHTML = "True:" +true_pred + ", False:" +false_pred +", No Prediction:" + no_pred+", Total:"+total_pred;
+
+
 }
 var TEMPLATES=[];
 var TEST_DATA;
@@ -86,7 +87,7 @@ async function templateMatching(){
     let data=TEST_DATA;
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
 
-    for (let index = 0; index <data.image.length; index++) {
+    for (let index = 0; index <1; index++) {
         let screenshot = data.image[index].url_src;
         let features=await findOrbFeatures(screenshot);
         let match=await matchTemplates(features,screenshot);
@@ -157,21 +158,20 @@ async function matchTemplates(scrFeatures,screenshot) {
     return Promise.resolve(result);
 }
 async function  runPositive(){
-   await loadTestDataFrom(test_dataset_positive_url);
+
 
    let url= document.getElementById("urls").value;
    switch(url){
-       case "tfLogoDetection": tfLogoDetection();break;
-       case "templateMatching": templateMatching();break;
+       case "tfLogoDetection":await loadTestDataFrom(test_dataset_url); tfLogoDetection();break;
+       case "templateMatching":await loadTestDataFrom(test_dataset_positive_url); templateMatching();break;
    }
 }
  async function runNegative(){
- await   loadTestDataFrom(test_dataset_negative_url);
 
    let url= document.getElementById("urls").value;
    switch(url){
        case "tfLogoDetection": tfLogoDetection();break;
-       case "templateMatching": templateMatching();break;
+       case "templateMatching":await loadTestDataFrom(test_dataset_negative_url);templateMatching();break;
    }
 }
 async function makeCorrespondenceImage(match, screenshot, features) {
@@ -201,7 +201,7 @@ async function tfLogoDetection() {
     let data=TEST_DATA;
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
     progress.value=0;
-    for (let index = 0; index < data.image.length; index++) {
+    for (let index = 0; index < 1; index++) {
         let result = await ml_system.tensorflow_tf.predict(data.image[index].url_src);
         total_time += result.time_taken;
         let category="";
@@ -232,7 +232,6 @@ async function tfLogoDetection() {
     showSummary(true_pred,false_pred,no_pred,total_pred);
 }
 function displayResultList(list){
-    disableButtons(false)
     let t=document.getElementsByTagName("table");
     if(t===undefined || t.length===0){
 
@@ -267,10 +266,20 @@ function displayResultList(list){
     }
 
 }
-$('document').ready(function(){
-    getTemplates()
+$('document').ready(async function(){
+  disableButtons(true);
+    await getTemplates()
+    disableButtons(false);
+    $("#runNegativeTest") .prop('disabled', true)
+    $("#urls").change(function() {
+        let url= $('option:selected').val();
+        switch(url){
 
+            case "tfLogoDetection":$("#runNegativeTest") .prop('disabled', true) ;break;
+            case "templateMatching":$("#runNegativeTest"). prop('disabled', false) ;break;
+        }
 
+    });
 
     document.getElementById("false").addEventListener("click", ()=>{
         displayResultList(resultList.filter(x=>x.category==="false"))

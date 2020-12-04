@@ -8,3 +8,4 @@ var test_dataset_banks_jpg_url = "https://raw.githubusercontent.com/sudhirkr/spo
 var test_dataset_banks_png_url = "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/load-dataset-banks_png.json";
 
 var test_dataset_others_url = "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/load-dataset-others.json";
+var test_dataset_url = "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/load-dataset.json";
