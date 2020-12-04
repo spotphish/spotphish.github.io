@@ -46,7 +46,7 @@ async function configureMachineLearningModel(log_url, model_url, labels) {
 async function reportAverageTime(total_time,average_time, score) {
     let time = document.createElement("p");
     time.style.cssText = "font-size: 20px; font-weight: bold; color: darkgreen";
-    time.innerHTML ="Total Prediction time: " + total_time + " sec," + " Average Prediction time: " + average_time + " sec" + ", Score: " + score;
+    time.innerHTML ="Total Prediction time: " + total_time + " sec," + " Average Prediction time: " + average_time + " sec" ;
     document.body.appendChild(time);
 }
 
@@ -59,8 +59,8 @@ async function showSummary(true_pred,false_pred,no_pred, total_pred) {
 var TEMPLATES=[];
 var TEST_DATA;
 async function getTemplates(){
-    // let data=await loadTemplates("https://spotphish.github.io/feeds/main/main.json");//other websites templates
-    let data=await loadTemplates("https://vijay-coriolis.github.io/main.json");//bank websites templates
+    // let data=await loadTemplates("https://spotphish.github.io/feeds/main/main.json");//other than bank websites templates
+    let data=await loadTemplates("https://vijay-coriolis.github.io/main.json");//all websites templates
 
     let templates=[];
     for(let site of data.sites){
@@ -86,7 +86,7 @@ async function templateMatching(){
     let data=TEST_DATA;
     let total_time = 0, true_pred = 0, total_pred = 0,false_pred=0,no_pred=0;
 
-    for (let index = 0; index <data.image.length; index++) {
+    for (let index = 0; index <5; index++) {
         let screenshot = data.image[index].url_src;
         let features=await findOrbFeatures(screenshot);
         let match=await matchTemplates(features,screenshot);
@@ -110,14 +110,16 @@ async function templateMatching(){
                false_pred++;
            }
            resultList.push({category:category,label:data.image[index].label,result:result});
+
            total_pred++;
            progress.value=total_pred*100/data.image.length;
-    }
+           displayResultList(resultList);
+        }
     let average_time = total_time/data.image.length;
     let score = (true_pred/total_pred) * 100;
 
 
-    displayResultList(resultList);
+
     reportAverageTime(total_time.toFixed(2),average_time.toFixed(2), score.toFixed(2));
     showSummary(true_pred,false_pred,no_pred,total_pred);
 
@@ -153,7 +155,17 @@ async function matchTemplates(scrFeatures,screenshot) {
     }
     return Promise.resolve(result);
 }
-function run(){
+function runPositive(){
+    loadTestDataFrom(test_dataset_positive_url);
+
+   let url= document.getElementById("urls").value;
+   switch(url){
+       case "tfLogoDetection": tfLogoDetection();break;
+       case "templateMatching": templateMatching();break;
+   }
+}
+function runNegative(){
+    loadTestDataFrom(test_dataset_negative_url);
 
    let url= document.getElementById("urls").value;
    switch(url){
@@ -174,7 +186,8 @@ function disableButtons(enable){
     document.getElementById("true").disabled=enable;
     document.getElementById("false").disabled=enable;
     document.getElementById("no").disabled=enable;
-    document.getElementById("run").disabled=enable;
+    document.getElementById("runPositiveTest").disabled=enable;
+    document.getElementById("runNegativeTest").disabled=enable;
 
 
 }
@@ -205,12 +218,13 @@ async function tfLogoDetection() {
         resultList.push({category:category,label:data.image[index].label,result:result});
         total_pred++;
         progress.value=total_pred*100/data.image.length;
+        displayResultList(resultList);
+
     }
 
     let average_time = total_time/data.image.length;
     let score = (true_pred/total_pred) * 100;
 
-    displayResultList(resultList);
     reportAverageTime(total_time.toFixed(2),average_time.toFixed(2), score.toFixed(2));
 
     showSummary(true_pred,false_pred,no_pred,total_pred);
@@ -253,10 +267,6 @@ function displayResultList(list){
 }
 $('document').ready(function(){
     getTemplates()
-    loadTestDataFrom(test_dataset_url);//all websites testing images
-    // loadTestDataFrom(test_dataset_banks_jpg_url);//bank jpg website testing images
-    // loadTestDataFrom(test_dataset_banks_png_url);//bank png website testing images
-    // loadTestDataFrom(test_dataset_others_url);//other website testing images
 
 
 

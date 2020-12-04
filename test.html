@@ -115,13 +115,14 @@
         Detection</option>
       <option value="templateMatching">Template Matching</option>
     </select>
-    <button id="run" onclick="run()">Run</button>
+    <button id="runPositiveTest" onclick="runPositive()">Run Postive Test</button>
+    <button id="runNegativeTest" onclick="runNegative()">Run Negative Test</button>
   </div>
   <progress id="progress" value="0" max="100"></progress>
   <div class="buttons-inline">
     <button id="all">All</button>
-    <button id="true">True</button>
-    <button id="false">False</button>
+    <button id="true">Correct Match</button>
+    <button id="false">Wrong match</button>
     <button id="no">No Prediction</button>
 
   </div>

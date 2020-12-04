@@ -1,0 +1,168 @@
+{
+  "image": [
+    {
+      "label": "Bank of Baroda",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-Baroda.png"
+    },
+    {
+      "label": "Bank of Baroda",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-Baroda-login.png"
+    },
+    {
+      "label": "State Bank of India",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/State-Bank-of-India.png"
+    },
+    {
+      "label": "State Bank of India",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/SBI-login.png"
+    },
+    {
+      "label": "Kotak Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Kotak-Bank.png"
+    },
+    {
+      "label": "Kotak Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Kotak-Bank-login.png"
+    },
+    {
+      "label": "Bandhan Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bandhan-Bank.png"
+    },
+    {
+      "label": "Bandhan Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bandhan-Bank-login.png"
+    },
+    {
+      "label": "Federal Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Federal-Bank.png"
+    },
+    {
+      "label": "Federal Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Federal-Bank-login.png"
+    },
+    {
+      "label": "IndusInd Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/IndusInd-Bank.png"
+    },
+    {
+      "label": "IndusInd Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/IndusInd-Bank-login.png"
+    },
+    {
+      "label": "Punjab National Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Punjab-National-Bank.png"
+    },
+    {
+      "label": "Punjab National Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Punjab-National-Bank-login.png"
+    },
+    {
+      "label": "RBL Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/RBL-Bank.png"
+    },
+    {
+      "label": "RBL Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/RBL-Bank-login.png"
+    },
+    {
+      "label": "Bank of India",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-India.png"
+    },
+    {
+      "label": "Bank of India",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-India-login.png"
+    },
+    {
+      "label": "Bank of Maharashtra",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-Maharashtra.png"
+    },
+    {
+      "label": "Bank of Maharashtra",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-Maharashtra-login.png"
+    },
+    {
+      "label": "Canara Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Canara-Bank.png"
+    },
+    {
+      "label": "Canara Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Canara-Bank-login.png"
+    },
+    {
+      "label": "Central Bank of India",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Central-Bank-of-India.png"
+    },
+    {
+      "label": "Central Bank of India",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Central-Bank-of-India-login.png"
+    },
+    {
+      "label": "Indian Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Indian-Bank.png"
+    },
+    {
+      "label": "Indian Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Indian-Bank-login.png"
+    },
+    {
+      "label": "Indian Overseas Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Indian-Overseas-Bank.png"
+    },
+    {
+      "label": "Indian Overseas Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Indian-Overseas-Bank-login.png"
+    },
+    {
+      "label": "Punjab and Sind Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Punjab-&-Sind-Bank.png"
+    },
+    {
+      "label": "Punjab and Sind Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Punjab-&-Sind-Bank-login.png"
+    },
+    {
+      "label": "Union Bank of India",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Union-Bank-of-India.png"
+    },
+    {
+      "label": "Union Bank of India",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Union-Bank-of-India-login.png"
+    },
+    {
+      "label": "UCO Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/UCO-Bank.png"
+    },
+    {
+      "label": "Yes Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Yes-Bank.png"
+    },
+    {
+      "label": "Yes Bank",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Yes-Bank-login.png"
+    },
+    {
+      "label": "LinkedIn",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/LinkedIn.png"
+    },
+    {
+      "label": "LinkedIn",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/LinkedIn-login.png"
+    },
+    {
+      "label": "Twitter",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Twitter.png"
+    },
+    {
+      "label": "Twitter",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Twitter-login.png"
+    },
+    {
+      "label": "incometax",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/income-tax.png"
+    },
+    {
+      "label": "incometax",
+      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/income-tax-login.png"
+    }
+  ]
+}
