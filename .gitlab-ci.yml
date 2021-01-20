@@ -1,16 +1,20 @@
 stages:
 - docker
 
+variables:
+  GITLAB_REGISTRY: "gitlab.corp.coriolis.in:5005"
 docker:
   image: docker:19.03.0
   stage: docker
   services:
-  - docker:19.03.0-dind
+  - name: docker:19.03.0-dind
+    command: ["--insecure-registry=gitlab.corp.coriolis.in:5005"]
   variables:
     DOCKER_TLS_CERTDIR: ""
     DOCKER_DRIVER: overlay2
   script:
   - docker ps
+  - docker login $CI_REGISTRY -p $CI_REGISTRY_PASSWORD -u $CI_REGISTRY_USER
   - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
   - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
     
