@@ -17,7 +17,7 @@ docker:
   - docker login $CI_REGISTRY -p $CI_REGISTRY_PASSWORD -u $CI_REGISTRY_USER
   - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
   - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
-    
+
 build:
   stage: build
   image: selenium/standalone-chrome:latest
@@ -28,7 +28,10 @@ build:
   - sudo apt update
   - sudo apt install python3-pip -y
   - pip3 install -r requirements.txt
+  - export PORT="8000"
+  - ls
+  - python3 -m http.server $PORT &
+  - export URL="http://localhost:${PORT}/test.html"
   - python3 main.py
   - mkdir -p public
   - mv Results.txt public
-
