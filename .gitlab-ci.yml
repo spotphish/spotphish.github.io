@@ -1,0 +1,16 @@
+stages:
+- docker
+
+
+
+docker:
+  image: docker:latest
+  stage: docker
+  services:
+  - docker:dind
+  script:
+  - docker ps
+  - docker login $CI_REGISTRY -p $CI_JOB_TOKEN
+  - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
+  - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    
