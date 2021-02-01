@@ -146,10 +146,6 @@
     },
     {
       "label": "Facebook",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook6.png"
-    },
-    {
-      "label": "Facebook",
       "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook7.png"
     },
     {
@@ -159,10 +155,6 @@
     {
       "label": "Facebook",
       "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook9.png"
-    },
-    {
-      "label": "Facebook",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook10.png"
     },
     {
       "label": "Facebook",
@@ -295,10 +287,6 @@
     {
       "label": "Google",
       "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Google8.png"
-    },
-    {
-      "label": "Google",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Google9.png"
     },
     {
       "label": "Google",
@@ -531,14 +519,6 @@
     {
       "label": "incometax",
       "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/income-tax-login.png"
-    },
-    {
-      "label": "Facebook",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook19.png"
-    },
-    {
-      "label": "Facebook",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook20.png"
     }
   ]
 }
