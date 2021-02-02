@@ -1,17 +1,17 @@
 $('document').ready(function () {
   loadLatestVersion().then(version => {
     ROOT_DIR += version.name;
-    templatesUrl = ROOT_DIR + "/models/Template Matching/main.json"
+    templatesUrl = ROOT_DIR + "/Template Matching/main.json"
     defaultModels = [{
         weightage: 100,
         webgl: false,
         name: "TemplateMatching",
         dependencies: [
-          ROOT_DIR + "/models/Template Matching/jsfeat.js",
-          ROOT_DIR + "/models/Template Matching/orb-features.js"
+          ROOT_DIR + "/Template Matching/jsfeat.js",
+          ROOT_DIR + "/Template Matching/orb-features.js"
 
         ],
-        src: ROOT_DIR + "/models/Template Matching/TemplateMatching.js",
+        src: ROOT_DIR + "/Template Matching/Model.js",
         label: "Template Matching",
         selected: true,
       },
@@ -22,7 +22,7 @@ $('document').ready(function () {
         dependencies: [
           "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js",
         ],
-        src: ROOT_DIR + "/models/LogoDetection/LogoDetection.js",
+        src: ROOT_DIR + "/LogoDetection/Model.js",
         label: "Logo Detection",
         selected: false
       }
@@ -89,7 +89,7 @@ function download(data, filename, type) {
   }
 }
 async function loadLatestVersion() {
-  let response = await fetch("https://api.github.com/repos/spotphish/spotphish/releases/latest");
+  let response = await fetch("https://api.github.com/repos/spotphish/models/releases/latest");
   let data = await response.json();
   return data;
 }
@@ -155,8 +155,9 @@ async function runPositive() {
     if (terminate) {
       break;
     }
+    let startTime = performance.now()
     let result = await x.predict(data.image[index].url_src);
-
+    result.time_taken = (performance.now() - startTime) / 1000
     total_time += result.time_taken;
     let category = "";
     if (result.site.includes(data.image[index].label)) {
