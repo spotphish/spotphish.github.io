@@ -1,11 +1,11 @@
 stages:
-- docker
+- build
 
 variables:
   GITLAB_REGISTRY: "gitlab.corp.coriolis.in:5005"
 docker:
   image: docker:19.03.0
-  stage: docker
+  stage: build
   services:
   - name: docker:19.03.0-dind
     command: ["--insecure-registry=gitlab.corp.coriolis.in:5005"]
@@ -18,3 +18,17 @@ docker:
   - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
   - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
     
+build:
+  stage: build
+  image: selenium/standalone-chrome:latest
+  artifacts:
+    paths:
+    - public
+  script:
+  - sudo apt update
+  - sudo apt install python3-pip -y
+  - pip3 install -r requirements.txt
+  - python3 main.py
+  - mkdir -p public
+  - mv Results.txt public
+

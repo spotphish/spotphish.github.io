@@ -42,7 +42,7 @@ $('document').ready(function () {
             })
           })
         })
-      }, 100)
+      }, 2000)
     })
   })
 
@@ -79,13 +79,14 @@ function download(data, filename, type) {
     var a = document.createElement("a"),
       url = URL.createObjectURL(file);
     a.href = url;
+    a.id = "resultfile"
     a.download = filename;
     document.body.appendChild(a);
     a.click();
     setTimeout(function () {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
-    }, 0);
+    }, 30000);
   }
 }
 async function loadLatestVersion() {
@@ -127,7 +128,7 @@ async function reportAverageTime(total_time, average_time, score) {
 }
 async function showSummary(true_pred, false_pred, no_pred, total_pred) {
 
-  document.getElementById("summary").innerHTML = "True:" + true_pred + ", False:" + false_pred + ", No Prediction:" + no_pred + ", Total:" + total_pred;
+  document.getElementById("summary").innerHTML = "<p id='finalresult'> True:" + true_pred + ", False:" + false_pred + ", No Prediction:" + no_pred + ", Total:" + total_pred+ "</p>" ;
   disableButtons(false)
 
 }
@@ -151,7 +152,7 @@ async function runPositive() {
     false_pred = 0,
     no_pred = 0;
 
-  for (let index = 0; index < data.image.length; index++) {
+  for (let index = 0; index < 1; index++) {
     if (terminate) {
       break;
     }
