@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      /* border-collapse: collapse; */
+      width: 100%;
+    }
+
+    th,
+    td {
+      text-align: center;
+      padding: 8px;
+    }
+
+
+
+    th {
+      /* border-radius: 8px; */
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .form-inline {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .buttons-inline {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .form-inline select {
+      flex: 1;
+      border-radius: 8px;
+      vertical-align: middle;
+      margin: 5px 10px 5px 0px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+    }
+
+    .form-inline button {
+      vertical-align: middle;
+      margin: 5px 10px 5px 0px;
+      border-radius: 8px;
+      padding: 10px 20px;
+      background-color: dodgerblue;
+      border: 1px solid #ddd;
+      color: white;
+      cursor: pointer;
+    }
+
+    .buttons-inline button {
+      flex: 1;
+      vertical-align: middle;
+      margin: 5px 10px 5px 0px;
+      border-radius: 8px;
+      padding: 10px 20px;
+      background-color: dodgerblue;
+      border: 1px solid #ddd;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:disabled,
+    button[disabled] {
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #666666;
+    }
+
+    button:active,
+    button:focus,
+    button:focus-visible {
+
+      background-color: #000000;
+    }
+
+    #summary {
+      font-size: 20px;
+      font-weight: bold;
+      color: red
+    }
+
+    #averageTime {
+      font-size: 20px;
+      font-weight: bold;
+      color: darkgreen
+    }
+
+    progress {
+      width: 100%;
+      height: 30px;
+    }
+
+    #loader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      width: 120px;
+      height: 120px;
+      margin: -76px 0 0 -76px;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Add animation to "page content" */
+    .animate-bottom {
+      position: relative;
+      -webkit-animation-name: animatebottom;
+      -webkit-animation-duration: 1s;
+      animation-name: animatebottom;
+      animation-duration: 1s
+    }
+
+    @-webkit-keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+
+      to {
+        bottom: 0px;
+        opacity: 1
+      }
+    }
+
+    @keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+
+      to {
+        bottom: 0;
+        opacity: 1
+      }
+    }
+
+    #myDiv {
+      display: none;
+      text-align: center;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./lodash.min.js"></script>
+  <script src="./config.js"></script>
+  <script src="./test.js"> </script>
+
+  <title>Test spotphish models</title>
+</head>
+
+<body>
+  <div id="loader"></div>
+  <div id="myDiv">
+    <div class="form-inline">
+
+      <label for="urls">Choose a Model:</label>
+      <select id="urls">
+      </select>
+
+      <button id="runPositiveTest" onclick="runPositive()">Run</button>
+      <button onclick="doTerminate()">Stop</button>
+
+      <!-- <button id="runNegativeTest" onclick="runNegative()">Run Negative Test</button> -->
+    </div>
+    <progress id="progress" value="0" max="100"></progress>
+    <div class="buttons-inline">
+      <button id="all">All</button>
+      <button id="true">Correct Match</button>
+      <button id="false">Wrong match</button>
+      <button id="no">No Prediction</button>
+    </div>
+    <div id="summary">
+    </div>
+    <div id="averageTime">
+    </div>
+  </div>
+</body>
+
+</html>
