@@ -348,6 +348,6 @@ async function primeWebgl() {
   let item = defaultModels[1];
   let Model = (await import(item.src)).default;
   let x = new Model();
-  await x.predict("./feeds/main/images/pixel.png");
+  await x.predict("https://spotphish.github.io/feeds/main/images/pixel.png");
   return;
 }
