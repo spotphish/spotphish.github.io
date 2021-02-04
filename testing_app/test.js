@@ -1,7 +1,7 @@
 $('document').ready(function () {
   loadLatestVersion().then(version => {
     ROOT_DIR += version.name;
-    templatesUrl = ROOT_DIR + "/Template Matching/main.json"
+
     defaultModels = [{
         weightage: 100,
         webgl: false,

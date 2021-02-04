@@ -1,176 +1,175 @@
 {
-  "image": [
-    {
+  "image": [{
       "label": "Bank of Baroda",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-Baroda.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Bank-of-Baroda.png"
     },
     {
       "label": "Bank of Baroda",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-Baroda-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Bank-of-Baroda-login.png"
     },
     {
       "label": "State Bank of India",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/State-Bank-of-India.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/State-Bank-of-India.png"
     },
     {
       "label": "State Bank of India",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/SBI-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/SBI-login.png"
     },
     {
       "label": "Kotak Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Kotak-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Kotak-Bank.png"
     },
     {
       "label": "Kotak Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Kotak-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Kotak-Bank-login.png"
     },
     {
       "label": "Bandhan Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bandhan-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Bandhan-Bank.png"
     },
     {
       "label": "Bandhan Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bandhan-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Bandhan-Bank-login.png"
     },
     {
       "label": "Federal Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Federal-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Federal-Bank.png"
     },
     {
       "label": "Federal Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Federal-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Federal-Bank-login.png"
     },
     {
       "label": "IndusInd Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/IndusInd-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/IndusInd-Bank.png"
     },
     {
       "label": "IndusInd Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/IndusInd-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/IndusInd-Bank-login.png"
     },
     {
       "label": "Punjab National Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Punjab-National-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Punjab-National-Bank.png"
     },
     {
       "label": "Punjab National Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Punjab-National-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Punjab-National-Bank-login.png"
     },
     {
       "label": "RBL Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/RBL-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/RBL-Bank.png"
     },
     {
       "label": "RBL Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/RBL-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/RBL-Bank-login.png"
     },
     {
       "label": "Bank of India",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-India.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Bank-of-India.png"
     },
     {
       "label": "Bank of India",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-India-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Bank-of-India-login.png"
     },
     {
       "label": "Bank of Maharashtra",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-Maharashtra.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Bank-of-Maharashtra.png"
     },
     {
       "label": "Bank of Maharashtra",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Bank-of-Maharashtra-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Bank-of-Maharashtra-login.png"
     },
     {
       "label": "Canara Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Canara-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Canara-Bank.png"
     },
     {
       "label": "Canara Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Canara-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Canara-Bank-login.png"
     },
     {
       "label": "Central Bank of India",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Central-Bank-of-India.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Central-Bank-of-India.png"
     },
     {
       "label": "Central Bank of India",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Central-Bank-of-India-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Central-Bank-of-India-login.png"
     },
     {
       "label": "Indian Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Indian-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Indian-Bank.png"
     },
     {
       "label": "Indian Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Indian-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Indian-Bank-login.png"
     },
     {
       "label": "Indian Overseas Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Indian-Overseas-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Indian-Overseas-Bank.png"
     },
     {
       "label": "Indian Overseas Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Indian-Overseas-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Indian-Overseas-Bank-login.png"
     },
     {
       "label": "Punjab and Sind Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Punjab-&-Sind-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Punjab-&-Sind-Bank.png"
     },
     {
       "label": "Punjab and Sind Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Punjab-&-Sind-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Punjab-&-Sind-Bank-login.png"
     },
     {
       "label": "Union Bank of India",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Union-Bank-of-India.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Union-Bank-of-India.png"
     },
     {
       "label": "Union Bank of India",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Union-Bank-of-India-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Union-Bank-of-India-login.png"
     },
     {
       "label": "UCO Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/UCO-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/UCO-Bank.png"
     },
     {
       "label": "Yes Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Yes-Bank.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Yes-Bank.png"
     },
     {
       "label": "Yes Bank",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Yes-Bank-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Yes-Bank-login.png"
     },
     {
       "label": "LinkedIn",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/LinkedIn.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/LinkedIn.png"
     },
     {
       "label": "LinkedIn",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/LinkedIn-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/LinkedIn-login.png"
     },
     {
       "label": "Twitter",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Twitter.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Twitter.png"
     },
     {
       "label": "Twitter",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/Twitter-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/Twitter-login.png"
     },
     {
       "label": "incometax",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/income-tax.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/income-tax.png"
     },
     {
       "label": "incometax",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Real/income-tax-login.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Real/income-tax-login.png"
     },
     {
       "label": "Facebook",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook19.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Facebook19.png"
     },
     {
       "label": "Facebook",
-      "url_src": "https://raw.githubusercontent.com/sudhirkr/spotphish-model/vijay/test-data/Fake/Facebook20.png"
+      "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Facebook20.png"
     }
   ]
 }

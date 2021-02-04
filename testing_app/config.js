@@ -14,7 +14,10 @@ var test_dataset_url = "./load-dataset.json";
 //Only bank website images. JPG images dataset does not give satisfactory results
 var test_dataset_banks_jpg_url = "./load-dataset-banks_jpg.json";
 var ROOT_DIR = "https://cdn.jsdelivr.net/gh/spotphish/models@",
-  templatesUrl, defaultModels;
+  defaultModels;
+
+const templatesUrl = "https://spotphish.github.io/feeds/main/main.json"
+
 
 
 var RUN_TYPE = "MANUAL"
