@@ -2,7 +2,7 @@
   "name": "default-feed",
   "url": "https://spotphish.github.io/feeds/main/main.json",
   "schema": "1.0",
-  "version": "20171211104288",
+  "version": "20171211104289",
   "sites": [{
       "name": "Facebook",
       "src": "https://spotphish.github.io/feeds/main/main.json",
@@ -231,10 +231,8 @@
       "src": "https://spotphish.github.io/feeds/main/main.json",
       "protected": [{
           "url": "https://www.dropbox.com/"
-        },
-        {
-          "url": "https://www.dropbox.com/business"
         }
+
       ],
       "templates": [{
           "name": "Dropbox-1",
