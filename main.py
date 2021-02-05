@@ -7,6 +7,9 @@ import time, sys, os
 
 pwd = os.getcwd()
 url = os.getenv("URL")
+if not url:
+    sys.exit("URL not found")
+
 options = Options()
 options.headless = True
 options.add_experimental_option("prefs", {
