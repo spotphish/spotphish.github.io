@@ -8,7 +8,7 @@ import time, sys, os
 pwd = os.getcwd()
 url = os.getenv("URL")
 options = Options()
-# options.headless = True
+options.headless = True
 options.add_experimental_option("prefs", {
   "download.default_directory": pwd,
   "download.prompt_for_download": False,
