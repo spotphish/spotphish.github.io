@@ -33,4 +33,5 @@ build:
   - export URL="http://localhost:${PORT}/testing_app/test.html"
   - python3 main.py
   - mkdir -p public
+  - ls
   - mv Results.txt public

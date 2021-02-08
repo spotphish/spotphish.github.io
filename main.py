@@ -39,4 +39,6 @@ except Exception as e:
     sys.exit(1)
 else:
     print("Job succeeded: Check the results in artifacts")
-    # driver.close()
+    print(os.getcwd())
+
+    driver.close()
