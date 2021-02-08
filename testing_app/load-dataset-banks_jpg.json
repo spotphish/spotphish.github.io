@@ -1,0 +1,119 @@
+{
+    "image": [{
+            "label": "Axis Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Axis1.jpg"
+        },
+        {
+            "label": "Axis Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Axis3.jpg"
+        },
+        {
+            "label": "Axis Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Axis4.jpg"
+        },
+        {
+            "label": "Axis Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Axis5.jpg"
+        },
+        {
+            "label": "Axis Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Axis6.jpg"
+        },
+        {
+            "label": "Axis Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Axis7.jpg"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Hdfc1.jpg"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Hdfc2.jpg"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Hdfc3.jpg"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Hdfc6.jpg"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Hdfc7.jpg"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Hdfc8.jpg"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Hdfc9.jpg"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Hdfc11.jpg"
+        },
+        {
+            "label": "HDFC Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Hdfc12.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici1.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici2.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici3.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici4.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici5.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici6.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici7.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici8.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici9.jpg"
+        },
+        {
+            "label": "ICICI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Icici10.jpg"
+        },
+        {
+            "label": "IDBI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Idbi2.jpg"
+        },
+        {
+            "label": "IDBI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Idbi3.jpg"
+        },
+        {
+            "label": "IDBI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Idbi4.jpg"
+        },
+        {
+            "label": "IDBI Bank",
+            "url_src": "https://spotphish.github.io/testing_app/test-data/Fake/Idbi6.jpg"
+        }
+    ]
+}
