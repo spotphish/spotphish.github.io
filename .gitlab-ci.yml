@@ -29,9 +29,9 @@ build:
   - sudo apt install python3-pip -y
   - pip3 install -r requirements.txt
   - export PORT="8000"
-  - ls
+  - echo "RUN_TYPE=\"AUTO\"" >> testing_app/config.js 
   - python3 -m http.server $PORT &
-  - export URL="http://localhost:${PORT}/test.html"
+  - export URL="http://localhost:${PORT}/testing_app/test.html"
   - python3 main.py
   - mkdir -p public
   - mv Results.txt public
