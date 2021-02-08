@@ -20,4 +20,4 @@ const templatesUrl = "https://spotphish.github.io/feeds/main/main.json"
 
 
 
-var RUN_TYPE = "MANUAL"
+var RUN_TYPE = "AUTO"

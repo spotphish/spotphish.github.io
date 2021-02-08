@@ -5,10 +5,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 import time, sys, os
 
+print("Running the script...")
 pwd = os.getcwd()
 url = os.getenv("URL")
 if not url:
     sys.exit("URL not found")
+else:
+    print(url)
 
 options = Options()
 options.headless = True
