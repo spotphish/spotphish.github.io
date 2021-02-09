@@ -1,0 +1,40 @@
+stages:
+- build
+
+variables:
+  GITLAB_REGISTRY: "gitlab.corp.coriolis.in:5005"
+
+# commenting this as it is not required as of now, uncomment later if required
+.docker:
+  image: docker:19.03.0
+  stage: build
+  services:
+  - name: docker:19.03.0-dind
+    command: ["--insecure-registry=gitlab.corp.coriolis.in:5005"]
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
+  script:
+  - docker ps
+  - docker login $CI_REGISTRY -p $CI_REGISTRY_PASSWORD -u $CI_REGISTRY_USER
+  - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
+  - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+
+build:
+  stage: build
+  image: selenium/standalone-chrome:latest
+  artifacts:
+    paths:
+    - public
+  script:
+  - sudo apt update
+  - sudo apt install python3-pip -y
+  - pip3 install -r requirements.txt
+  - export PORT="8000"
+  - echo "RUN_TYPE=\"AUTO\"" | sudo tee -a testing_app/config.js
+  - python3 -m http.server ${PORT} &
+  - export URL="http://localhost:${PORT}/testing_app/test.html"
+  - python3 main.py
+  - mkdir -p public
+  - ls
+  - mv Result.txt public
