@@ -23,13 +23,11 @@ options.add_experimental_option("prefs", {
 })
 
 try:
-    print(url)
     driver = webdriver.Chrome(options=options)
     driver.get(url)
     element = WebDriverWait(driver, 10000,poll_frequency=5).until(
         ec.presence_of_element_located((By.ID, "resultfile"))
     )
-    print(element)
     time.sleep(5)
 
 except KeyboardInterrupt:
@@ -39,6 +37,4 @@ except Exception as e:
     sys.exit(1)
 else:
     print("Job succeeded: Check the results in artifacts")
-    print(os.getcwd())
-
     driver.close()
