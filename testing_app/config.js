@@ -18,6 +18,4 @@ var ROOT_DIR = "https://cdn.jsdelivr.net/gh/spotphish/models@",
 
 const templatesUrl = "https://spotphish.github.io/feeds/main/main.json"
 
-
-
-var RUN_TYPE = "AUTO"
+var RUN_TYPE = "MANUAL"
