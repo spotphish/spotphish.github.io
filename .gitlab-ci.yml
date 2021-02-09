@@ -3,7 +3,9 @@ stages:
 
 variables:
   GITLAB_REGISTRY: "gitlab.corp.coriolis.in:5005"
-docker:
+
+# commenting this as it is not required as of now, uncomment later if required
+.docker:
   image: docker:19.03.0
   stage: build
   services:
