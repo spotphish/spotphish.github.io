@@ -152,7 +152,7 @@ async function runPositive() {
     false_pred = 0,
     no_pred = 0;
 
-  for (let index = 0; index < 1; index++) {
+  for (let index = 0; index < data.image.length; index++) {
     if (terminate) {
       break;
     }
