@@ -1,5 +1,5 @@
 stages:
-- build
+- model_testing
 
 variables:
   GITLAB_REGISTRY: "gitlab.corp.coriolis.in:5005"
@@ -20,8 +20,8 @@ variables:
   - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
   - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
 
-build:
-  stage: build
+model_test:
+  stage: model_testing
   image: selenium/standalone-chrome:latest
   artifacts:
     paths:
@@ -38,3 +38,6 @@ build:
   - mkdir -p public
   - ls
   - mv Result.txt public
+  only:
+    variables:
+      - $RUN_PIPELINE == "true"
