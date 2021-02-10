@@ -1,0 +1,7 @@
+name: model-testing
+on: [push]
+jobs:
+  model-tests:
+    container: selenium/standalone-chrome:latest
+    steps:
+      - run: echo "Testing.." 
