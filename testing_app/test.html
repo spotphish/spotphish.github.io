@@ -100,7 +100,7 @@
       height: 30px;
     }
 
-    #loader {
+    .loader {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -113,6 +113,15 @@
       border-top: 16px solid #3498db;
       -webkit-animation: spin 2s linear infinite;
       animation: spin 2s linear infinite;
+    }
+
+    #loader p {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      margin: 0 0 0 100px;
+
     }
 
     @-webkit-keyframes spin {
@@ -182,18 +191,23 @@
 </head>
 
 <body>
-  <div id="loader"></div>
+  <div id="loader">
+    <div class="loader"></div>
+    <p>Loading...</p>
+  </div>
   <div id="myDiv">
     <div class="form-inline">
 
       <label for="urls">Choose a Model:</label>
       <select id="urls">
       </select>
+      <button id="runPositiveTest">Run on canned dataset</button>
+      <button id="runCustomTest">Select own image and run</button>
+      <input id="image-picker" style="display: none;" type="file" accept="image/*" />
+      <button id="stop">Stop</button>
+      <button id="uploadCustomModel" style="display: none;">Upload custom model</button>
+      <input id="model-picker" style="display: none;" type="file" webkitdirectory directory multiple />
 
-      <button id="runPositiveTest" onclick="runPositive()">Run</button>
-      <button onclick="doTerminate()">Stop</button>
-
-      <!-- <button id="runNegativeTest" onclick="runNegative()">Run Negative Test</button> -->
     </div>
     <progress id="progress" value="0" max="100"></progress>
     <div class="buttons-inline">

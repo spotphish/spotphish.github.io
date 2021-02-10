@@ -1,7 +1,9 @@
 $('document').ready(function () {
+  $("#loader p").html("Fetching latest version");
   loadLatestVersion().then(version => {
-    ROOT_DIR += version.name;
+    $("#loader p").html("Loading models");
 
+    ROOT_DIR += version.name;
     defaultModels = [{
         weightage: 100,
         webgl: false,
@@ -9,7 +11,6 @@ $('document').ready(function () {
         dependencies: [
           ROOT_DIR + "/Template Matching/jsfeat.js",
           ROOT_DIR + "/Template Matching/orb-features.js"
-
         ],
         src: ROOT_DIR + "/Template Matching/Model.js",
         label: "Template Matching",
@@ -30,22 +31,79 @@ $('document').ready(function () {
   }).then(() => {
     loadScripts().then(() => {
       setTimeout(() => {
-        primeWebgl().then(() => {
-          fetchTemplates().then(() => {
-            loadTestDataFrom(test_dataset_url).then(() => {
-              showPage()
-              if (RUN_TYPE === "AUTO") {
-                runAutoTest().then(() => {
-                  download(downloadData, "Result", "txt")
-                })
-              }
-            })
+        $("#loader p").html("Fetching templates");
+
+        fetchTemplates().then(() => {
+          $("#loader p").html("Loading canned test images dataset");
+
+          loadTestDataFrom(test_dataset_url).then(() => {
+            showPage()
+            if (RUN_TYPE === "AUTO") {
+              runAutoTest().then(() => {
+                download(downloadData, "Result", "txt")
+              })
+            }
           })
         })
       }, 100)
     })
   })
 
+  $("#image-picker").change(function (event) {
+    readURL(this);
+  });
+  document.querySelector('#uploadCustomModel').addEventListener('click', uploadCustomModel);
+  document.querySelector('#stop').addEventListener('click', doTerminate);
+  document.querySelector('#runCustomTest').addEventListener('click', runCustom);
+  document.querySelector('#runPositiveTest').addEventListener('click', runPositive);
+
+
+  var folder = document.getElementById("model-picker");
+  folder.onchange = function () {
+    let files = folder.files,
+      len = files.length,
+      i;
+    let file;
+    for (i = 0; i < len; i += 1) {
+      if (files[i].name === "Model.js" && files[i].type === "text/javascript") {
+        file = files[i];
+        break;
+      }
+    }
+    if (file === undefined) {
+      alert("No Model.js found")
+      return;
+    }
+    let reader = new FileReader();
+
+    reader.onload = async function (e) {
+      let url = e.target.result;
+      let Model = (await import(url)).default;
+      if (Model != undefined) {
+        if (Model.prototype.predict != null && (typeof Model.prototype.predict) === "function") {
+          if (Model.dependencies !== undefined && Array.isArray(Model.dependencies)) {
+
+            let item = {
+              weightage: 100,
+              webgl: false,
+              name: Model.name,
+              dependencies: [],
+              src: url,
+              label: Model.name,
+              selected: true,
+            }
+            //   await injectScripts(item);
+            // $('#urls').append(`<option value="${item.src}"> ${item.label} </option>`);
+          }
+        }
+      }
+
+    }
+    reader.readAsDataURL(file);
+
+
+
+  }
 
   document.getElementById("false").addEventListener("click", () => {
     displayResultList(resultList.filter(x => x.category === "false"))
@@ -67,6 +125,20 @@ async function runAutoTest() {
     await runPositive()
   }
   return;
+}
+var CUSTOM_TEST_IMG;
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    let reader = new FileReader();
+
+    reader.onload = function (e) {
+      CUSTOM_TEST_IMG = e.target.result;
+      dataset = "custom";
+      runPositive();
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
 }
 
 function download(data, filename, type) {
@@ -118,7 +190,8 @@ function disableButtons(enable) {
   document.getElementById("false").disabled = enable;
   document.getElementById("no").disabled = enable;
   document.getElementById("runPositiveTest").disabled = enable;
-
+  document.getElementById("runCustomTest").disabled = enable;
+  document.getElementById("uploadCustomModel").disabled = enable;
 }
 async function reportAverageTime(total_time, average_time, score) {
 
@@ -131,20 +204,40 @@ async function showSummary(true_pred, false_pred, no_pred, total_pred) {
   disableButtons(false)
 
 }
-var resultList = [];
 
+function uploadCustomModel() {
+  $("#model-picker").click()
+}
+
+var resultList = [];
+var dataset = "canned";
+async function runCustom() {
+  $("#image-picker").click()
+}
 async function runPositive() {
   terminate = false;
   disableButtons(true)
   let url = $("#urls").val();
+
   let Model = (await import(url)).default;
   let x = new Model();
 
   resultList = [];
   var progress = document.getElementById("progress");
-  progress.value = 0;
 
+  progress.value = 0;
   let data = TEST_DATA;
+  if (dataset === "custom") {
+    let str = $("#image-picker").val().split(/(\\|\/)/g).pop();
+
+    data = {
+      "image": [{
+        "label": str,
+        "url_src": CUSTOM_TEST_IMG
+      }]
+    }
+    dataset = "canned"
+  }
   let total_time = 0,
     true_pred = 0,
     total_pred = 0,
@@ -164,7 +257,7 @@ async function runPositive() {
 
     total_time += result.time_taken;
     let category = "";
-    if (result.site.includes(data.image[index].label)) {
+    if (result.site.toLowerCase().includes(data.image[index].label.toLowerCase()) || data.image[index].label.toLowerCase().includes(result.site.toLowerCase())) {
       category = "true";
       true_pred++;
     } else if (result.site == "NaN") {
@@ -195,6 +288,7 @@ async function runPositive() {
   let score = (true_pred / total_pred) * 100;
   reportAverageTime(total_time.toFixed(2), average_time.toFixed(2), score.toFixed(2));
   showSummary(true_pred, false_pred, no_pred, total_pred);
+
   downloadData.push({
     "model": Model.name,
     "True Prediction": true_pred,
