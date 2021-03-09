@@ -1,34 +1,55 @@
 $('document').ready(function () {
+  showPage()
   $("#loader p").html("Fetching latest version");
-  loadLatestVersion().then(version => {
+  new Promise(async (res, rej) => {
     $("#loader p").html("Loading models");
-
-    ROOT_DIR += version.name;
-    defaultModels = [{
-        weightage: 100,
-        webgl: false,
-        name: "TemplateMatching",
-        dependencies: [
-          ROOT_DIR + "/Template Matching/jsfeat.js",
-          ROOT_DIR + "/Template Matching/orb-features.js"
-        ],
-        src: ROOT_DIR + "/Template Matching/Model.js",
-        label: "Template Matching",
-        selected: true,
-      },
-      {
-        name: "LogoDetection",
-        webgl: true,
-        weightage: 0,
-        dependencies: [
-          "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js",
-        ],
-        src: ROOT_DIR + "/LogoDetection/Model.js",
-        label: "Logo Detection",
-        selected: false
+    for (let x of defaultModels) {
+      ROOT_DIR = undefined
+      x.name = (x.label).replace(/\s+/g, "_");
+      let srcFile = x.root;
+      srcFile = srcFile.replace("github.com", "cdn.jsdelivr.net/gh")
+      srcFile = srcFile.replace("tree/", "")
+      let splitted_domain = srcFile.split("/")
+      splitted_domain.splice(6, 1)
+      let latest_version = await loadLatestVersion(splitted_domain[4], splitted_domain[5])
+      if (latest_version.name !== undefined) {
+        splitted_domain[5] = splitted_domain[5] + "@" + latest_version.name;
       }
-    ]
+      ROOT_DIR = splitted_domain.slice(0, 6).join("/")
+      srcFile = splitted_domain.join("/");
+      srcFile += "/Model.js"
+      if (!srcFile.includes("https://cdn.jsdelivr.net/")) {
+        continue;
+      }
+
+      let remoteFile;
+      try {
+        remoteFile = (await import(srcFile));
+      } catch (e) {
+        console.log(e);
+        continue
+      }
+      let Model = remoteFile.default;
+      if (Model !== undefined) {
+        if (Model.prototype.predict != null && (typeof Model.prototype.predict) === "function") {
+          if (Model.dependencies !== undefined && Array.isArray(Model.dependencies)) {
+            x.dependencies = Model.dependencies;
+          } else {
+            x.dependencies = [];
+          }
+        } else {
+          continue
+        }
+      } else {
+        continue
+      }
+      x.src = srcFile;
+      x.root = ROOT_DIR
+      ROOT_DIR = undefined
+    }
+    res()
   }).then(() => {
+    console.log(defaultModels);
     loadScripts().then(() => {
       setTimeout(() => {
         $("#loader p").html("Fetching templates");
@@ -52,58 +73,69 @@ $('document').ready(function () {
   $("#image-picker").change(function (event) {
     readURL(this);
   });
-  document.querySelector('#uploadCustomModel').addEventListener('click', uploadCustomModel);
+  $('#urls').on('click', function () {
+    $("#customModelUrl").val("");
+  });
+  $('#customModelUrl').on('change', async function () {
+    let x = {
+      root: $(this).val(),
+      label: "x",
+    }
+    ROOT_DIR = undefined
+    x.name = (x.label).replace(/\s+/g, "_");
+
+    let srcFile = x.root;
+    srcFile = srcFile.replace("github.com", "cdn.jsdelivr.net/gh")
+    srcFile = srcFile.replace("tree/", "")
+    let splitted_domain = srcFile.split("/")
+    splitted_domain.splice(6, 1)
+    let latest_version = await loadLatestVersion(splitted_domain[4], splitted_domain[5])
+    if (latest_version.name !== undefined) {
+      splitted_domain[5] = splitted_domain[5] + "@" + latest_version.name;
+    }
+    ROOT_DIR = splitted_domain.slice(0, 6).join("/")
+    srcFile = splitted_domain.join("/");
+    srcFile += "/Model.js"
+    console.log(srcFile);
+    if (!srcFile.includes("https://cdn.jsdelivr.net/")) {
+      return;
+    }
+
+    let remoteFile;
+    try {
+      remoteFile = (await import(srcFile));
+    } catch (e) {
+      console.log(e);
+      return;
+    }
+    let Model = remoteFile.default;
+    if (Model !== undefined) {
+      x.label = Model.name;
+      if (Model.prototype.predict != null && (typeof Model.prototype.predict) === "function") {
+        if (Model.dependencies !== undefined && Array.isArray(Model.dependencies)) {
+          x.dependencies = Model.dependencies;
+        } else {
+          x.dependencies = [];
+        }
+      } else {
+        return
+      }
+    } else {
+      return
+    }
+    x.src = srcFile;
+    x.root = ROOT_DIR
+    x.name = (x.label).replace(/\s+/g, "_");
+    ROOT_DIR = undefined
+    defaultModels.push(x);
+    await injectScripts(x);
+    $('#urls').append(`<option value="${x.name}"> ${x.label} </option>`);
+    $(this).val("Your model was successfully added to the above list");
+    console.log(defaultModels);
+  });
   document.querySelector('#stop').addEventListener('click', doTerminate);
   document.querySelector('#runCustomTest').addEventListener('click', runCustom);
   document.querySelector('#runPositiveTest').addEventListener('click', runPositive);
-
-
-  var folder = document.getElementById("model-picker");
-  folder.onchange = function () {
-    let files = folder.files,
-      len = files.length,
-      i;
-    let file;
-    for (i = 0; i < len; i += 1) {
-      if (files[i].name === "Model.js" && files[i].type === "text/javascript") {
-        file = files[i];
-        break;
-      }
-    }
-    if (file === undefined) {
-      alert("No Model.js found")
-      return;
-    }
-    let reader = new FileReader();
-
-    reader.onload = async function (e) {
-      let url = e.target.result;
-      let Model = (await import(url)).default;
-      if (Model != undefined) {
-        if (Model.prototype.predict != null && (typeof Model.prototype.predict) === "function") {
-          if (Model.dependencies !== undefined && Array.isArray(Model.dependencies)) {
-
-            let item = {
-              weightage: 100,
-              webgl: false,
-              name: Model.name,
-              dependencies: [],
-              src: url,
-              label: Model.name,
-              selected: true,
-            }
-            //   await injectScripts(item);
-            // $('#urls').append(`<option value="${item.src}"> ${item.label} </option>`);
-          }
-        }
-      }
-
-    }
-    reader.readAsDataURL(file);
-
-
-
-  }
 
   document.getElementById("false").addEventListener("click", () => {
     displayResultList(resultList.filter(x => x.category === "false"))
@@ -161,15 +193,16 @@ function download(data, filename, type) {
     }, 30000);
   }
 }
-async function loadLatestVersion() {
-  let response = await fetch("https://api.github.com/repos/spotphish/models/releases/latest");
+
+async function loadLatestVersion(USER, PROJECT) {
+  let response = await fetch("https://api.github.com/repos/" + USER + "/" + PROJECT + "/releases/latest");
   let data = await response.json();
   return data;
 }
 async function loadScripts() {
   for (let item of defaultModels) {
     await injectScripts(item);
-    $('#urls').append(`<option value="${item.src}"> ${item.label} </option>`);
+    $('#urls').append(`<option value="${item.name}"> ${item.label} </option>`);
   }
   return
 
@@ -192,7 +225,7 @@ function disableButtons(enable) {
   document.getElementById("no").disabled = enable;
   document.getElementById("runPositiveTest").disabled = enable;
   document.getElementById("runCustomTest").disabled = enable;
-  document.getElementById("uploadCustomModel").disabled = enable;
+
 }
 async function reportAverageTime(total_time, average_time, score) {
 
@@ -201,14 +234,12 @@ async function reportAverageTime(total_time, average_time, score) {
 }
 async function showSummary(true_pred, false_pred, no_pred, total_pred) {
 
-  document.getElementById("summary").innerHTML = "<p id='finalresult'> True:" + true_pred + ", False:" + false_pred + ", No Prediction:" + no_pred + ", Total:" + total_pred+ "</p>" ;
+  document.getElementById("summary").innerHTML = "<p id='finalresult'> True:" + true_pred + ", False:" + false_pred + ", No Prediction:" + no_pred + ", Total:" + total_pred + "</p>";
   disableButtons(false)
 
 }
 
-function uploadCustomModel() {
-  $("#model-picker").click()
-}
+
 
 var resultList = [];
 var dataset = "canned";
@@ -218,11 +249,17 @@ async function runCustom() {
 async function runPositive() {
   terminate = false;
   disableButtons(true)
-  let url = $("#urls").val();
-
-  let Model = (await import(url)).default;
+  let selected_model_id = $("#urls").val();
+  let selected_model;
+  for (let x of defaultModels) {
+    if (x.name === selected_model_id) {
+      selected_model = x;
+      break;
+    }
+  }
+  let Model = (await import(selected_model.src)).default;
   let x = new Model();
-
+  ROOT_DIR = selected_model.root;
   resultList = [];
   var progress = document.getElementById("progress");
 

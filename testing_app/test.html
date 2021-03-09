@@ -36,14 +36,32 @@
       align-items: center;
     }
 
-    .form-inline select {
+    .form-inline div select {
       flex: 1;
       border-radius: 8px;
       vertical-align: middle;
-      margin: 5px 10px 5px 0px;
       padding: 10px;
       background-color: #fff;
       border: 1px solid #ddd;
+    }
+
+    .form-inline div input {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      vertical-align: middle;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    .form-inline div {
+      flex: 1;
+      margin: 5px 10px 5px 0px;
+      padding: 10px;
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
     }
 
     .form-inline button {
@@ -197,16 +215,17 @@
   </div>
   <div id="myDiv">
     <div class="form-inline">
-
-      <label for="urls">Choose a Model:</label>
-      <select id="urls">
-      </select>
+      <div>
+        <label for="urls">Choose a Model: </label>
+        <select id="urls">
+        </select>
+        OR
+        <input id="customModelUrl" type="url" placeholder="Enter the url of your own model" />
+      </div>
       <button id="runPositiveTest">Run on canned dataset</button>
       <button id="runCustomTest">Select own image and run</button>
       <input id="image-picker" style="display: none;" type="file" accept="image/*" />
       <button id="stop">Stop</button>
-      <button id="uploadCustomModel" style="display: none;">Upload custom model</button>
-      <input id="model-picker" style="display: none;" type="file" webkitdirectory directory multiple />
 
     </div>
     <progress id="progress" value="0" max="100"></progress>
