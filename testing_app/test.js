@@ -258,8 +258,9 @@ async function runPositive() {
     }
   }
   let Model = (await import(selected_model.src)).default;
-  let x = new Model();
   ROOT_DIR = selected_model.root;
+
+  let x = new Model();
   resultList = [];
   var progress = document.getElementById("progress");
 
