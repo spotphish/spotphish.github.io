@@ -37,6 +37,11 @@ $('document').ready(function () {
           } else {
             x.dependencies = [];
           }
+          if (Model.model !== undefined && (typeof Model.model === 'string' || Model.model instanceof String)) {
+            x.model_url = Model.model;
+          } else {
+            x.model_url = "";
+          }
         } else {
           continue
         }
@@ -117,6 +122,11 @@ $('document').ready(function () {
         } else {
           x.dependencies = [];
         }
+        if (Model.model !== undefined && (typeof Model.model === 'string' || Model.model instanceof String)) {
+          x.model_url = Model.model;
+        } else {
+          x.model_url = "";
+        }
       } else {
         return
       }
@@ -158,19 +168,40 @@ async function runAutoTest() {
   }
   return;
 }
-var CUSTOM_TEST_IMG;
+var CUSTOM_TEST_IMG = [];
 
 function readURL(input) {
-  if (input.files && input.files[0]) {
-    let reader = new FileReader();
+  if (input.files) {
+    CUSTOM_TEST_IMG = [];
+    readmultifiles(input.files)
+  }
+}
 
-    reader.onload = function (e) {
-      CUSTOM_TEST_IMG = e.target.result;
+function readmultifiles(files) {
+
+  var reader = new FileReader();
+
+  function readFile(index) {
+    if (index >= files.length) {
       dataset = "custom";
       runPositive();
+      return;
+    };
+    var file = files[index];
+    reader.onload = function (e) {
+
+      CUSTOM_TEST_IMG.push({
+        "label": file.name,
+        "url_src": e.target.result
+      });
+
+
+      readFile(index + 1)
     }
-    reader.readAsDataURL(input.files[0]);
+
+    reader.readAsDataURL(file);
   }
+  readFile(0);
 }
 
 function download(data, filename, type) {
@@ -267,13 +298,11 @@ async function runPositive() {
   progress.value = 0;
   let data = TEST_DATA;
   if (dataset === "custom") {
-    let str = $("#image-picker").val().split(/(\\|\/)/g).pop();
+    // let str = $("#image-picker").val().split(/(\\|\/)/g).pop();
 
     data = {
-      "image": [{
-        "label": str,
-        "url_src": CUSTOM_TEST_IMG
-      }]
+      "image": CUSTOM_TEST_IMG
+
     }
     dataset = "canned"
   }
@@ -290,13 +319,13 @@ async function runPositive() {
 
 
     let startTime = performance.now()
-    let result = await x.predict(data.image[index].url_src);
+    let result = await x.predict(data.image[index].url_src, selected_model.model_url);
     result.time_taken = (performance.now() - startTime) / 1000
 
 
     total_time += result.time_taken;
     let category = "";
-    if (result.site.toLowerCase().includes(data.image[index].label.toLowerCase()) || data.image[index].label.toLowerCase().includes(result.site.toLowerCase())) {
+    if (result.site.replace(/\s+/g, "").toLowerCase().includes(data.image[index].label.replace(/\s+/g, "").toLowerCase()) || data.image[index].label.replace(/\s+/g, "").toLowerCase().includes(result.site.replace(/\s+/g, "").toLowerCase())) {
       category = "true";
       true_pred++;
     } else if (result.site == "NaN") {
@@ -481,6 +510,6 @@ async function primeWebgl() {
   let item = defaultModels[1];
   let Model = (await import(item.src)).default;
   let x = new Model();
-  await x.predict("./pixel.png");
+  await x.predict("./pixel.png", item.model_url);
   return;
 }
