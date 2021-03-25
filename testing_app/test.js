@@ -1,68 +1,92 @@
+var shouldUpdate = false;
 $('document').ready(function () {
-  showPage()
+  // showPage()
+
+  if (+new Date() - (localStorage.getItem("lastUpdate")) > (24 * 60 * 60 * 1000)) {
+    console.log("updating.......");
+    localStorage.setItem("lastUpdate", +new Date());
+    shouldUpdate = true
+  }
+  openDB()
   $("#loader p").html("Fetching latest version");
   new Promise(async (res, rej) => {
     $("#loader p").html("Loading models");
-    for (let x of defaultModels) {
-      ROOT_DIR = undefined
-      x.name = (x.label).replace(/\s+/g, "_");
-      let srcFile = x.root;
-      srcFile = srcFile.replace("github.com", "cdn.jsdelivr.net/gh")
-      srcFile = srcFile.replace("tree/", "")
-      let splitted_domain = srcFile.split("/")
-      splitted_domain.splice(6, 1)
-      let latest_version = await loadLatestVersion(splitted_domain[4], splitted_domain[5])
-      if (latest_version.name !== undefined) {
-        splitted_domain[5] = splitted_domain[5] + "@" + latest_version.name;
-      }
-      ROOT_DIR = splitted_domain.slice(0, 6).join("/")
-      srcFile = splitted_domain.join("/");
-      srcFile += "/Model.js"
-      if (!srcFile.includes("https://cdn.jsdelivr.net/")) {
-        continue;
-      }
+    if (!shouldUpdate && localStorage.getItem("defaultModels")) {
+      console.log("models data from cache");
 
-      let remoteFile;
-      try {
-        remoteFile = (await import(srcFile));
-      } catch (e) {
-        console.log(e);
-        continue
-      }
-      let Model = remoteFile.default;
-      if (Model !== undefined) {
-        if (Model.prototype.predict != null && (typeof Model.prototype.predict) === "function") {
-          if (Model.dependencies !== undefined && Array.isArray(Model.dependencies)) {
-            x.dependencies = Model.dependencies;
+      defaultModels = JSON.parse(localStorage.getItem("defaultModels"))
+    } else {
+      console.log("models data from remote");
+
+      for (let x of defaultModels) {
+        ROOT_DIR = undefined
+        x.name = (x.label).replace(/\s+/g, "_");
+        let srcFile = x.root;
+        srcFile = srcFile.replace("github.com", "cdn.jsdelivr.net/gh")
+        srcFile = srcFile.replace("tree/", "")
+        let splitted_domain = srcFile.split("/")
+        splitted_domain.splice(6, 1)
+        let latest_version = await loadLatestVersion(splitted_domain[4], splitted_domain[5])
+        if (latest_version.name !== undefined) {
+          splitted_domain[5] = splitted_domain[5] + "@" + latest_version.name;
+        }
+        ROOT_DIR = splitted_domain.slice(0, 6).join("/")
+        srcFile = splitted_domain.join("/");
+        srcFile += "/Model.js"
+        if (!srcFile.includes("https://cdn.jsdelivr.net/")) {
+          continue;
+        }
+
+        let remoteFile;
+        try {
+          remoteFile = (await import(srcFile));
+        } catch (e) {
+          console.log(e);
+          continue
+        }
+        let Model = remoteFile.default;
+        if (Model !== undefined) {
+          if (Model.prototype.predict != null && (typeof Model.prototype.predict) === "function") {
+            if (Model.dependencies !== undefined && Array.isArray(Model.dependencies)) {
+              x.dependencies = Model.dependencies;
+            } else {
+              x.dependencies = [];
+            }
+            if (Model.model !== undefined && (typeof Model.model === 'string' || Model.model instanceof String)) {
+              x.model_url = Model.model;
+            } else {
+              x.model_url = "";
+            }
+            x.model = "indexeddb://" + Model.name
+
           } else {
-            x.dependencies = [];
-          }
-          if (Model.model !== undefined && (typeof Model.model === 'string' || Model.model instanceof String)) {
-            x.model_url = Model.model;
-          } else {
-            x.model_url = "";
+            continue
           }
         } else {
           continue
         }
-      } else {
-        continue
+        x.src = srcFile;
+        x.root = ROOT_DIR
+        ROOT_DIR = undefined
       }
-      x.src = srcFile;
-      x.root = ROOT_DIR
-      ROOT_DIR = undefined
+      localStorage.setItem("defaultModels", JSON.stringify(defaultModels))
+
     }
     res()
   }).then(() => {
     console.log(defaultModels);
+
     loadScripts().then(() => {
       setTimeout(() => {
         $("#loader p").html("Fetching templates");
 
         fetchTemplates().then(() => {
+          // localStorage.setItem("templates", JSON.stringify(TEMPLATES))//Exceed quota
+
           $("#loader p").html("Loading canned test images dataset");
 
           loadTestDataFrom(test_dataset_url).then(() => {
+
             showPage()
             if (RUN_TYPE === "AUTO") {
               runAutoTest().then(() => {
@@ -127,6 +151,8 @@ $('document').ready(function () {
         } else {
           x.model_url = "";
         }
+        x.model = "indexeddb://" + Model.name
+
       } else {
         return
       }
@@ -139,11 +165,18 @@ $('document').ready(function () {
     ROOT_DIR = undefined
     defaultModels.push(x);
     await injectScripts(x);
+    setTimeout(() => {
+      saveModelToIndexedDB(x);
+    }, 1000);
     $('#urls').append(`<option value="${x.name}"> ${x.label} </option>`);
     $(this).val("Your model was successfully added to the above list");
     console.log(defaultModels);
+    localStorage.setItem("defaultModels", JSON.stringify(defaultModels))
+
   });
   document.querySelector('#stop').addEventListener('click', doTerminate);
+  document.querySelector('#reset').addEventListener('click', reset);
+
   document.querySelector('#runCustomTest').addEventListener('click', runCustom);
   document.querySelector('#runPositiveTest').addEventListener('click', runPositive);
 
@@ -233,9 +266,24 @@ async function loadLatestVersion(USER, PROJECT) {
 async function loadScripts() {
   for (let item of defaultModels) {
     await injectScripts(item);
+    if (shouldUpdate) {
+      setTimeout(() => {
+        saveModelToIndexedDB(item);
+      }, 1000);
+    }
+
     $('#urls').append(`<option value="${item.name}"> ${item.label} </option>`);
   }
   return
+
+}
+
+async function saveModelToIndexedDB(item) {
+  if (item.name === "Template_Matching" || item.model_url == "") {
+    return;
+  }
+  let x = await tf.loadGraphModel(item.model_url);
+  let z = await x.save(item.model)
 
 }
 
@@ -319,7 +367,7 @@ async function runPositive() {
 
 
     let startTime = performance.now()
-    let result = await x.predict(data.image[index].url_src, selected_model.model_url);
+    let result = await x.predict(data.image[index].url_src, selected_model.model);
     result.time_taken = (performance.now() - startTime) / 1000
 
 
@@ -450,9 +498,18 @@ function displayResultList(list) {
 }
 var TEST_DATA;
 async function loadTestDataFrom(URL) {
+  if (!shouldUpdate && localStorage.getItem("test_data")) {
+    console.log("test data from cache");
+    TEST_DATA = JSON.parse(localStorage.getItem("test_data"))
+    return
+  }
+  console.log("test data from remote");
+
   let response = await fetch(URL);
   let data = await response.json();
   TEST_DATA = data;
+  localStorage.setItem("test_data", JSON.stringify(TEST_DATA))
+
   return;
 }
 
@@ -463,6 +520,15 @@ async function loadTemplates(URL) {
 }
 var TEMPLATES = [];
 async function fetchTemplates() {
+  let db_data = await readDB();
+  if (!shouldUpdate && db_data.length > 0) {
+    console.log("templates data from cache");
+    TEMPLATES = db_data;
+    return;
+  }
+
+  console.log("templates data from remote");
+
   let data = await loadTemplates(templatesUrl); //all websites templates
   let templates = [];
   for (let site of data.sites) {
@@ -483,7 +549,10 @@ async function fetchTemplates() {
       console.log(e)
     }
   }
+  writeDB(TEMPLATES)
+
   return;
+
 }
 async function injectScripts(item) {
   if ($("#" + item.name).length !== 0) {
@@ -506,10 +575,16 @@ var terminate = false;
 function doTerminate() {
   terminate = true;
 }
+
+function reset() {
+  console.log("clicked");
+  localStorage.setItem("lastUpdate", 0);
+  location.reload()
+}
 async function primeWebgl() {
   let item = defaultModels[1];
   let Model = (await import(item.src)).default;
   let x = new Model();
-  await x.predict("./pixel.png", item.model_url);
+  await x.predict("./pixel.png", item.model);
   return;
 }

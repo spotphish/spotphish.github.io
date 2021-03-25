@@ -205,6 +205,8 @@
   <script src="./config.js"></script>
   <script src="./test.js"> </script>
 
+  <script src="./database.js"> </script>
+
   <title>Test spotphish models</title>
 </head>
 
@@ -226,6 +228,7 @@
       <button id="runCustomTest">Select own image and run</button>
       <input id="image-picker" style="display: none;" type="file" accept="image/*" multiple />
       <button id="stop">Stop</button>
+      <button id="reset" style="background-color: red;">Clear cache (Default:24 hrs)</button>
 
     </div>
     <progress id="progress" value="0" max="100"></progress>
